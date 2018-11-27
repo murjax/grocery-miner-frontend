@@ -6,7 +6,7 @@ export default Controller.extend({
 
   actions: {
     authenticate() {
-      const credentials = this.getProperties('username', 'password');
+      const credentials = this.getProperties('email', 'password');
       const authenticator = 'authenticator:jwt';
       this.get('session').authenticate(authenticator, credentials);
     }

@@ -6,10 +6,13 @@ export default Route.extend({
   ajax: inject('ajax'),
   session: inject('session'),
   model() {
-    return this.get('ajax').request(`${config.host}/`).then(() => {
-      return 'success';
-    }).catch(() => {
-      return 'failure';
-    });
+    if (this.get('session.isAuthenticated')) {
+      return this.get('ajax').request(`${config.host}/`).then(() => {
+        return 'success';
+      }).catch(() => {
+        return 'failure';
+      });
+    }
+    this.transitionTo('home');
   }
 });

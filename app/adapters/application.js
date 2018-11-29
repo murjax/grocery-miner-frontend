@@ -1,7 +1,7 @@
 import ActiveModelAdapter from 'active-model-adapter';
-import TokenAuthorizerMixin from 'ember-simple-auth-token/mixins/token-authorizer';
+import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import config from '../config/environment';
-export default ActiveModelAdapter.extend(TokenAuthorizerMixin, {
+export default ActiveModelAdapter.extend(DataAdapterMixin, {
   host: `${config.host}`,
   authorizer: 'authorizer:custom'
 });

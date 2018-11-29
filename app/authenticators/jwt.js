@@ -29,8 +29,8 @@ export default Base.extend({
       dataType: 'json'
     };
     return new Promise((resolve, reject) => {
-      ajax(requestOptions).then((response) => {
-        const { jwt } = response;
+      ajax(requestOptions).then((_data, _textStatus, xhr) => {
+        const jwt = xhr.getResponseHeader('authorization');
         // Wrapping aync operation in Ember.run
         run(() => {
           resolve({

@@ -1,6 +1,6 @@
-import Base from 'ember-simple-auth/authorizers/base';
+import BaseAuthorizer from 'ember-simple-auth/authorizers/base';
 import Ember from 'ember';
-export default Base.extend({
+export default BaseAuthorizer.extend({
   session: Ember.inject.service(),
   authorize(data, block) {
     if (Ember.testing) {

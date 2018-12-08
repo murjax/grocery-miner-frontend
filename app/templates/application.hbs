@@ -1,7 +1,9 @@
 <nav>
-  {{#link-to "login"}}
-    Login
-  {{/link-to}}
+  {{#if session.isAuthenticated}}
+    <a {{action 'invalidateSession'}}>Logout</a>
+  {{else}}
+    {{#link-to 'login'}}Login{{/link-to}}
+  {{/if}}
   {{#link-to "home"}}
     Home
   {{/link-to}}

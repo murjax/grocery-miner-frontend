@@ -4,9 +4,8 @@ import { setupTest } from 'ember-qunit';
 module('Unit | Service | ajax', function(hooks) {
   setupTest(hooks);
 
-  // Replace this with your real tests.
   test('it exists', function(assert) {
-    let service = this.owner.lookup('service:ajax');
+    const service = this.owner.lookup('service:ajax');
     assert.ok(service);
   });
 });

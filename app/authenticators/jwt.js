@@ -1,12 +1,15 @@
 import Ember from 'ember';
 import Base from 'ember-simple-auth/authenticators/base';
 import config from '../config/environment';
-const { RSVP: { Promise }, $: { ajax }, run } = Ember;
+import { Promise } from 'rsvp';
+import { isEmpty } from '@ember/utils';
+import { run } from '@ember/runloop';
+const { $: { ajax } } = Ember;
 export default Base.extend({
   tokenEndpoint: `${config.host}/login`,
   restore(data) {
     return new Promise((resolve, reject) => {
-      if (!Ember.isEmpty(data.token)) {
+      if (!isEmpty(data.token)) {
         resolve(data);
       } else {
         reject();

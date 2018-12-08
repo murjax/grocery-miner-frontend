@@ -22,7 +22,6 @@ export default Controller.extend({
           const authenticator = 'authenticator:jwt';
           this.get('session').authenticate(authenticator, credentials);
         }).catch(reason => {
-          return 'failure';
           this.set('errorMessage', reason.error || reason);
         });
       } else {

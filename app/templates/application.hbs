@@ -1,6 +1,11 @@
 <nav>
   {{#if session.isAuthenticated}}
-    <button {{action "invalidateSession"}}>Logout</button>
+    <button
+      class="logout"
+      {{action "invalidateSession"}}
+    >
+      Logout
+    </button>
   {{else}}
     {{#link-to "login"}}Login{{/link-to}}
     {{#link-to "signup"}}Sign Up{{/link-to}}

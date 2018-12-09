@@ -1,13 +1,24 @@
 <form {{action "submit" on="submit"}}>
   <label for="email">Email</label>
-  {{input value=email placeholder="enter email"}}
+  {{input
+    id="email"
+    value=email
+    placeholder="enter email"
+  }}
 
   <label for="password">Password</label>
-  {{input value=password type="password" placeholder="enter password"}}
+  {{input
+    id="password"
+    value=password
+    type="password"
+    placeholder="enter password"
+  }}
 
-  <button type="submit">Sign Up</button>
+  <button class="submit" type="submit">Sign Up</button>
 </form>
 
 {{#if errorMessage}}
-  {{errorMessage}}
+  <div class="errors">
+    {{errorMessage}}
+  </div>
 {{/if}}

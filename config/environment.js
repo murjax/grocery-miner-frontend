@@ -42,6 +42,10 @@ module.exports = function(environment) {
 
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
+    ENV['ember-simple-auth'] = {
+      store: 'ember-simple-auth-session-store:ephemeral'
+    };
+    ENV.host = 'http://localhost:3000';
   }
 
   if (environment === 'production') {

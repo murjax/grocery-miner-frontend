@@ -1,0 +1,27 @@
+<form {{action "onSubmit" on="submit"}}>
+  <label for="name">Name</label>
+  {{input
+    id="name"
+    placeholder="Name"
+    value=name
+  }}
+  <label for="price">Price</label>
+  {{input
+    id="price"
+    placeholder="Price"
+    value=price
+  }}
+  <label for="purhcase-date">Price</label>
+  {{input
+    id="purchase-date"
+    placeholder="Purchase Date"
+    value=purchaseDate
+  }}
+  <button class="submit" type="submit">Submit</button>
+</form>
+
+{{#if errorMessage}}
+  <div class="errors">
+    {{errorMessage}}
+  </div>
+{{/if}}

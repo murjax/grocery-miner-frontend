@@ -1,4 +1,5 @@
 import Controller from '@ember/controller';
+import moment from 'moment';
 
 export default Controller.extend({
   actions: {
@@ -6,7 +7,7 @@ export default Controller.extend({
       const item = this.store.createRecord('item', {
         name: this.name,
         price: this.price,
-        purchaseDate: this.purchaseDate,
+        purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
       });
       item.save();
     }

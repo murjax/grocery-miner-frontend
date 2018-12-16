@@ -12,11 +12,7 @@
     value=price
   }}
   <label for="purhcase-date">Price</label>
-  {{input
-    id="purchase-date"
-    placeholder="Purchase Date"
-    value=purchaseDate
-  }}
+  {{bs-datetimepicker date=purchaseDate}}
   <button class="submit" type="submit">Submit</button>
 </form>
 

@@ -4,5 +4,5 @@ import attr from 'ember-data/attr';
 export default Model.extend({
   name: attr('string'),
   price: attr('number'),
-  purchaseDate: attr('date'),
+  purchaseDate: attr('string'),
 });

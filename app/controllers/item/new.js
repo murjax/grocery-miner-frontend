@@ -6,6 +6,7 @@ export default Controller.extend({
       const item = this.store.createRecord('item', {
         name: this.name,
         price: this.price,
+        purchaseDate: this.purchaseDate,
       });
       item.save();
     }

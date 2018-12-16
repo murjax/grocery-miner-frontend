@@ -4,8 +4,8 @@ import config from '../config/environment';
 export default ActiveModelAdapter.extend(DataAdapterMixin, {
   host: `${config.host}`,
   authorize(xhr) {
-    let { email, token } = this.get('session.data.authenticated');
-    let authData = `Token token="${token}", email="${email}"`;
+    let { token } = this.get('session.data.authenticated');
+    let authData = `Bearer ${token}`;
     xhr.setRequestHeader('Authorization', authData);
   }
 });

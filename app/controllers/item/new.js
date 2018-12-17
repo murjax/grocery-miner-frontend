@@ -9,7 +9,7 @@ export default Controller.extend({
         price: this.price,
         purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
       });
-      item.save();
+      item.save().then(() => this.transitionToRoute('home'));
     }
   }
 });

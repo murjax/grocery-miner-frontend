@@ -1,5 +1,6 @@
 {{#each model.draftItems as |item|}}
   <p>{{item.name}} {{item.price}} {{item.purchaseDate}}</p>
+  <a href="#" {{action "deleteItem" item}}>Delete</a>
 {{/each}}
 
 <form {{action "onSubmit" on="submit"}}>

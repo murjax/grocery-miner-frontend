@@ -16,12 +16,8 @@ export default Controller.extend({
       item.deleteRecord();
     },
     onSubmit() {
-      const item = this.store.createRecord('item', {
-        name: this.name,
-        price: this.price,
-        purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
-      });
-      item.save().then(() => this.transitionToRoute('home'));
+      this.model.draftItems.forEach(item => item.save());
+      this.transitionToRoute('home');
     }
   }
 });

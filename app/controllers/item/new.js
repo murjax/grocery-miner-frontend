@@ -1,7 +1,11 @@
 import Controller from '@ember/controller';
 import moment from 'moment';
+import { inject } from '@ember/service';
+import RSVP from 'rsvp';
 
 export default Controller.extend({
+  notify: inject('notify'),
+
   actions: {
     addItem() {
       const item = this.store.createRecord('item', {
@@ -15,9 +19,15 @@ export default Controller.extend({
       this.model.draftItems.removeObject(item);
       item.deleteRecord();
     },
-    onSubmit() {
-      this.model.draftItems.forEach(item => item.save());
-      this.transitionToRoute('home');
+    async onSubmit() {
+      try {
+        await RSVP.all(this.model.draftItems.map(item => item.save()));
+        this.transitionToRoute('home');
+      } catch(errors) {
+        const errorTitles = errors.errors.mapBy('title');
+        const errorMessage = errorTitles.join(', ');
+        this.get('notify').error(errorMessage);
+      }
     }
   }
 });

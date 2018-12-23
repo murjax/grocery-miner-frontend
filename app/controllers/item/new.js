@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import moment from 'moment';
 import { inject } from '@ember/service';
+import { set } from '@ember/object';
 import RSVP from 'rsvp';
 
 export default Controller.extend({
@@ -18,6 +19,9 @@ export default Controller.extend({
     deleteItem(item) {
       this.model.draftItems.removeObject(item);
       item.deleteRecord();
+    },
+    setDate(selectedDate) {
+      set(this, 'purchaseDate', selectedDate);
     },
     async onSubmit() {
       try {

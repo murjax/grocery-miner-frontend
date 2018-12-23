@@ -46,6 +46,9 @@ module.exports = function(environment) {
       store: 'ember-simple-auth-session-store:ephemeral'
     };
     ENV.host = 'http://localhost:3000';
+    ENV['ember-cli-mirage'] = {
+      enabled: true
+    };
   }
 
   if (environment === 'production') {

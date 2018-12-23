@@ -17,8 +17,13 @@
     value=price
   }}
   <label for="purhcase-date">Purchase Date</label>
-  {{pikaday-input value=purchaseDate format="MM-DD-YYYY"}}
-  <button {{action "addItem"}}>Add Item</button>
+  {{pikaday-input
+    value=purchaseDate
+    id="purchase-date"
+    format="MM-DD-YYYY"
+    onSelection=(action "setDate")
+  }}
+  <button class="add-item" {{action "addItem"}}>Add Item</button>
   <button class="submit" type="submit">Submit</button>
 </form>
 

@@ -13,6 +13,7 @@ Router.map(function() {
 
   this.route('item', function() {
     this.route('new');
+    this.route('monthly');
   });
 });
 

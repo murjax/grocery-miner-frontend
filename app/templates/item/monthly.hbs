@@ -1,8 +1,9 @@
 {{#power-select
   options=months
   selected=month
+  triggerClass="month-select"
   onchange=(action (mut month))
-  as |month|
+as |month|
 }}
   {{month}}
 {{/power-select}}
@@ -10,8 +11,9 @@
 {{#power-select
   options=years
   selected=year
+  triggerClass="year-select"
   onchange=(action (mut year))
-  as |year|
+as |year|
 }}
   {{year}}
 {{/power-select}}

@@ -13,8 +13,8 @@ export default Route.extend({
     return this.get('ajax').request(`${config.host}/items/monthly`, {
       data: { month: params.month, year: params.year }
     }).then((response) => {
-    return response;
-    }).catch((error) => {
+      return response;
+    }).catch(() => {
       return [];
     });
   }

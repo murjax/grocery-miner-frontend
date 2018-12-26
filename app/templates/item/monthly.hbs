@@ -1,3 +1,21 @@
+{{#power-select
+  options=months
+  selected=month
+  onchange=(action (mut month))
+  as |month|
+}}
+  {{month}}
+{{/power-select}}
+
+{{#power-select
+  options=years
+  selected=year
+  onchange=(action (mut year))
+  as |year|
+}}
+  {{year}}
+{{/power-select}}
+
 {{#ember-table as |t|}}
   {{t.head columns=columns}}
   {{t.body rows=model.items}}

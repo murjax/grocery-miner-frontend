@@ -45,6 +45,7 @@
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-notify": "^5.3.0",
     "ember-pikaday": "^2.3.0",
+    "ember-power-select": "^2.2.1",
     "ember-qunit": "^3.4.1",
     "ember-resolver": "^5.0.1",
     "ember-simple-auth-token": "^4.0.5",

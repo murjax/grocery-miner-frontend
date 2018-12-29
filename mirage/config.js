@@ -15,4 +15,14 @@ export default function() {
       return purchaseDate.isBetween(startDate, endDate);
     });
   });
+
+  this.get(`${config.host}/items/yearly`, function() {
+    const year = this.request.queryParams.year;
+    const startDate = moment(`01/01/${year}`);
+    const endDate = startDate.clone().endOf('year');
+    return this.schema.items.all().filter(item => {
+      const purchaseDate = moment(item.purchaseDate);
+      return purchaseDate.isBetween(startDate, endDate);
+    });
+  });
 }

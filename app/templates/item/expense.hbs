@@ -1,0 +1,14 @@
+{{#power-select
+  options=ranges
+  selected=range
+  triggerClass="range-select"
+  onchange=(action (mut range))
+as |range|
+}}
+  {{range}}
+{{/power-select}}
+
+{{#ember-table as |t|}}
+  {{t.head columns=columns}}
+  {{t.body rows=model.items}}
+{{/ember-table}}

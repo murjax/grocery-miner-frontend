@@ -25,4 +25,18 @@ export default function() {
       return purchaseDate.isBetween(startDate, endDate);
     });
   });
+
+  this.get(`${config.host}/items/expense`, function() {
+    const range = this.request.queryParams.range || '30';
+    const dateLimit = moment().subtract(range, 'days');
+
+    var items = this.schema.items.all().filter(item => {
+      const purchaseDate = moment(item.purchaseDate);
+      return purchaseDate.isSameOrAfter(dateLimit);
+    });
+
+    return items.sort(function(a, b) {
+      return b.price - a.price;
+    }).slice(0, 5);
+  });
 }

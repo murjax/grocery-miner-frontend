@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('new');
     this.route('monthly');
     this.route('yearly');
+    this.route('expense');
   });
 });
 

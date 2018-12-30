@@ -51,4 +51,25 @@ export default function() {
 
     return { names: itemNames };
   });
+
+  this.get(`${config.host}/items/total_per_month`, function() {
+    const month = this.request.queryParams.month;
+    const year = this.request.queryParams.year;
+    const startDate = moment(`${month}/01/${year}`);
+    const endDate = startDate.clone().endOf('month');
+
+    const items = this.schema.items.all().filter(item => {
+      const purchaseDate = moment(item.purchaseDate);
+      return purchaseDate.isBetween(startDate, endDate);
+    });
+
+    const itemPrices = items.models.map(item => {
+      const sharedNameItems = items.models.filter(shared => shared.name == item.name);
+      const total = sharedNameItems.reduce(function(a, b) { return a + parseFloat(b.price) }, 0);
+      return { name: item.name, price: total };
+    }).uniqBy('name');
+    itemPrices;
+
+    return { items: itemPrices };
+  });
 }

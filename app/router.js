@@ -17,6 +17,7 @@ Router.map(function() {
     this.route('yearly');
     this.route('expense');
     this.route('frequent');
+    this.route('total-per-month');
   });
 });
 

@@ -39,4 +39,16 @@ export default function() {
       return b.price - a.price;
     }).slice(0, 5);
   });
+
+  this.get(`${config.host}/items/frequent`, function() {
+    var items = this.schema.items.all();
+
+    const itemNames = items.models.map(item => {
+      return { name: item.name, count: this.schema.items.where({ name: item.name }).length };
+    }).sort(function(a, b) {
+      return b.count - a.count;
+    }).map(item => item.name).uniq().slice(0, 5);
+
+    return { names: itemNames };
+  });
 }

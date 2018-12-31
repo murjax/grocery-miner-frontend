@@ -11,7 +11,7 @@ Router.map(function() {
   this.route('login');
   this.route('signup');
 
-  this.route('item', function() {
+  this.route('purchase', function() {
     this.route('new');
     this.route('monthly');
     this.route('yearly');

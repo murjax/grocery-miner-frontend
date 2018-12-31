@@ -1,0 +1,24 @@
+{{#power-select
+  options=months
+  selected=month
+  triggerClass="month-select"
+  onchange=(action (mut month))
+as |month|
+}}
+  {{month}}
+{{/power-select}}
+
+{{#power-select
+  options=years
+  selected=year
+  triggerClass="year-select"
+  onchange=(action (mut year))
+as |year|
+}}
+  {{year}}
+{{/power-select}}
+
+{{#ember-table as |t|}}
+  {{t.head columns=columns}}
+  {{t.body rows=model.purchases}}
+{{/ember-table}}

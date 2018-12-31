@@ -1,0 +1,34 @@
+{{#each model.draftPurchases as |purchase|}}
+  <p>{{purchase.name}} {{purchase.price}} {{purchase.purchaseDate}}</p>
+  <a href="#" {{action "deletePurchase" purchase}}>Delete</a>
+{{/each}}
+
+<form {{action "onSubmit" on="submit"}}>
+  <label for="name">Name</label>
+  {{input
+    id="name"
+    placeholder="Name"
+    value=name
+  }}
+  <label for="price">Price</label>
+  {{input
+    id="price"
+    placeholder="Price"
+    value=price
+  }}
+  <label for="purhcase-date">Purchase Date</label>
+  {{pikaday-input
+    value=purchaseDate
+    id="purchase-date"
+    format="MM-DD-YYYY"
+    onSelection=(action "setDate")
+  }}
+  <button class="add-purchase" {{action "addPurchase"}}>Add Purchase</button>
+  <button class="submit" type="submit">Submit</button>
+</form>
+
+{{#if errorMessage}}
+  <div class="errors">
+    {{errorMessage}}
+  </div>
+{{/if}}

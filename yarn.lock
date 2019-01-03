@@ -4057,7 +4057,16 @@ ember-popper@^0.9.0:
     fastboot-transform "^0.1.0"
     popper.js "^1.14.1"
 
-ember-power-select@^2.2.1:
+ember-power-select-typeahead@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/ember-power-select-typeahead/-/ember-power-select-typeahead-0.7.2.tgz#e1937819d214a30e0832f2db77a06a2eb4e2db3c"
+  integrity sha512-PUk5F+0ZDuJId95x4uoALtl30n1niA/fWMC/x3oB68USlSLWpzfwc4SLbevGMnklq1eJ223f8W6obMi1f47gyg==
+  dependencies:
+    ember-cli-babel "^6.12.0"
+    ember-cli-htmlbars "^2.0.1"
+    ember-power-select "^2.0.0-beta.5"
+
+ember-power-select@^2.0.0-beta.5, ember-power-select@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-2.2.1.tgz#8adea6c5c5e9dea0cd64519171b7bf19857b1db6"
   integrity sha512-v8aQZOlXYzBPpB0gpcpJS3VhQOUznmO8se3VrCp/rqOzGo56jfi5UX6GkE0VhFk224Wtzqq4S+YCmmqEb8A/KQ==

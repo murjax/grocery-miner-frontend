@@ -1,7 +1,8 @@
 import Route from '@ember/routing/route';
 
 export default Route.extend({
-  model() {
-    return { draftPurchases: [] };
+  async model() {
+    const items = await this.store.findAll('item');
+    return { draftPurchases: [], items };
   }
 });

@@ -1,15 +1,13 @@
 {{#each model.draftPurchases as |purchase|}}
-  <p>{{purchase.name}} {{purchase.price}} {{purchase.purchaseDate}}</p>
+  <p>{{purchase.item.name}} {{purchase.price}} {{purchase.purchaseDate}}</p>
   <a href="#" {{action "deletePurchase" purchase}}>Delete</a>
 {{/each}}
 
 <form {{action "onSubmit" on="submit"}}>
   <label for="name">Name</label>
-  {{input
-    id="name"
-    placeholder="Name"
-    value=name
-  }}
+  {{#power-select-typeahead search=(action 'searchAsync') selected=name onchange=(action (mut name)) as |name|}}
+    {{name}}
+  {{/power-select-typeahead}}
   <label for="price">Price</label>
   {{input
     id="price"

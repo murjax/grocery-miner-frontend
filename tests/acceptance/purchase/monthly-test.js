@@ -13,8 +13,9 @@ module('Acceptance | purchase/monthly', hooks => {
     const thisMonthName = 'Apples';
     const thisMonthPrice = '13.50';
     const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthItem = this.server.create('item', { name: thisMonthName });
     this.server.create('purchase',
-      { name: thisMonthName,
+      { item: thisMonthItem,
         price: thisMonthPrice,
         purchaseDate: thisMonthPurchaseDate
       });
@@ -22,9 +23,10 @@ module('Acceptance | purchase/monthly', hooks => {
     const lastMonthName = 'Oranges';
     const lastMonthPrice = '14.50';
     const lastMonthPurchaseDate = moment().subtract(1, 'months').format('MM-DD-YYYY');
+    const lastMonthItem = this.server.create('item', { name: lastMonthName });
     this.server.create('purchase',
       {
-        name: lastMonthName,
+        item: lastMonthItem,
         price: lastMonthPrice,
         purchaseDate: lastMonthPurchaseDate
       });
@@ -44,8 +46,9 @@ module('Acceptance | purchase/monthly', hooks => {
     const thisMonthName = 'Apples';
     const thisMonthPrice = '13.50';
     const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthItem = this.server.create('item', { name: thisMonthName });
     this.server.create('purchase',
-      { name: thisMonthName,
+      { item: thisMonthItem,
         price: thisMonthPrice,
         purchaseDate: thisMonthPurchaseDate
       });
@@ -53,9 +56,10 @@ module('Acceptance | purchase/monthly', hooks => {
     const otherMonthName = 'Oranges';
     const otherMonthPrice = '14.50';
     const otherMonthPurchaseDate = '11-06-2012';
+    const otherMonthItem = this.server.create('item', { name: otherMonthName });
     this.server.create('purchase',
       {
-        name: otherMonthName,
+        item: otherMonthItem,
         price: otherMonthPrice,
         purchaseDate: otherMonthPurchaseDate
       });

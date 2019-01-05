@@ -24,14 +24,14 @@ module('Acceptance | purchase/new', hooks => {
     const secondPurchaseFormattedPurchaseDate = moment(secondPurchasePurchaseDate).format('YYYY-MM-DD');
 
     await visit('/purchase/new');
-    await fillIn('#name', firstPurchaseName);
+    await fillIn('.ember-power-select-typeahead-input', firstPurchaseName);
     await fillIn('#price', firstPurchasePrice);
     await click('#price');
     await fillIn('#purchase-date', firstPurchasePurchaseDate);
 
     await click('.add-purchase');
 
-    await fillIn('#name', secondPurchaseName);
+    await fillIn('.ember-power-select-typeahead-input', secondPurchaseName);
     await fillIn('#price', secondPurchasePrice);
     await fillIn('#purchase-date', secondPurchasePurchaseDate);
 
@@ -42,11 +42,11 @@ module('Acceptance | purchase/new', hooks => {
     const firstPurchase = this.server.schema.purchases.first();
     const secondPurchase = this.server.schema.purchases.find(2);
 
-    assert.equal(firstPurchase.name, firstPurchaseName);
+    assert.equal(firstPurchase.item.name, firstPurchaseName);
     assert.equal(firstPurchase.price, firstPurchasePrice);
     assert.equal(firstPurchase.purchaseDate, firstPurchaseFormattedPurchaseDate);
 
-    assert.equal(secondPurchase.name, secondPurchaseName);
+    assert.equal(secondPurchase.item.name, secondPurchaseName);
     assert.equal(secondPurchase.price, secondPurchasePrice);
     assert.equal(secondPurchase.purchaseDate, secondPurchaseFormattedPurchaseDate);
   });

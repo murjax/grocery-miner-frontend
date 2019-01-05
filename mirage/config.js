@@ -4,6 +4,7 @@ import moment from 'moment';
 export default function() {
   this.post(`${config.host}/signup`, () => true);
   this.resource('purchase', { path: `${config.host}/purchases`, only: ['index', 'show', 'create'] });
+  this.resource('item', { path: `${config.host}/items`, only: ['index', 'show', 'create'] });
 
   this.get(`${config.host}/purchases/monthly`, function() {
     const month = this.request.queryParams.month;

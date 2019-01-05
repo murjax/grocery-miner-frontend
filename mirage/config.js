@@ -45,7 +45,7 @@ export default function() {
     var purchases = this.schema.purchases.all();
 
     const purchaseNames = purchases.models.map(purchase => {
-      return { name: purchase.name, count: this.schema.purchases.where({ name: purchase.name }).length };
+      return { name: purchase.item.attrs.name, count: this.schema.purchases.where({ item: purchase.item }).length };
     }).sort(function(a, b) {
       return b.count - a.count;
     }).map(purchase => purchase.name).uniq().slice(0, 5);

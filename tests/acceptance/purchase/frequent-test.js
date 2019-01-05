@@ -9,28 +9,35 @@ module('Acceptance | purchase/frequent', hooks => {
 
   test('frequently purchased purchases report', async function(assert) {
     const mostFrequentName = 'Apples';
+    const mostFrequentItem = this.server.create('item', { name: mostFrequentName });
 
-    this.server.create('purchase', { name: 'Oranges' });
-    this.server.create('purchase', { name: 'Oranges' });
+    const oranges = this.server.create('item', { name: 'Oranges' });
+    const bananas = this.server.create('item', { name: 'Bananas' });
+    const pineapples = this.server.create('item', { name: 'Pineapples' });
+    const milk = this.server.create('item', { name: 'Milk' });
 
-    this.server.create('purchase', { name: mostFrequentName });
-    this.server.create('purchase', { name: mostFrequentName });
-    this.server.create('purchase', { name: mostFrequentName });
-    this.server.create('purchase', { name: mostFrequentName });
-    this.server.create('purchase', { name: mostFrequentName });
-    this.server.create('purchase', { name: mostFrequentName });
+    this.server.create('purchase', { item: oranges });
+    this.server.create('purchase', { item: oranges });
 
-    this.server.create('purchase', { name: 'Bananas' });
-    this.server.create('purchase', { name: 'Bananas' });
+    this.server.create('purchase', { item: mostFrequentItem });
+    this.server.create('purchase', { item: mostFrequentItem });
+    this.server.create('purchase', { item: mostFrequentItem });
+    this.server.create('purchase', { item: mostFrequentItem });
+    this.server.create('purchase', { item: mostFrequentItem });
+    this.server.create('purchase', { item: mostFrequentItem });
 
-    this.server.create('purchase', { name: 'Pineapples' });
-    this.server.create('purchase', { name: 'Pineapples' });
+    this.server.create('purchase', { item: bananas });
+    this.server.create('purchase', { item: bananas });
 
-    this.server.create('purchase', { name: 'Milk' });
-    this.server.create('purchase', { name: 'Milk' });
+    this.server.create('purchase', { item: pineapples });
+    this.server.create('purchase', { item: pineapples });
+
+    this.server.create('purchase', { item: milk });
+    this.server.create('purchase', { item: milk });
 
     const leastFrequentName = 'Eggs';
-    this.server.create('purchase', { name: leastFrequentName });
+    const leastFrequentItem = this.server.create('item', { name: leastFrequentName });
+    this.server.create('purchase', { item: leastFrequentItem });
 
     await visit('/purchase/frequent');
 

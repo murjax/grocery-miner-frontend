@@ -14,11 +14,12 @@ module('Acceptance | purchase/total-per-month', hooks => {
     const firstPrice = '12.50';
     const secondPrice = '12.75';
     const purchaseDate = moment().format('MM-DD-YYYY');
+    const item = this.server.create('item', { name });
 
-    this.server.create('purchase', { name, price: firstPrice, purchaseDate });
-    this.server.create('purchase', { name, price: secondPrice, purchaseDate });
+    this.server.create('purchase', { item, price: firstPrice, purchaseDate });
+    this.server.create('purchase', { item, price: secondPrice, purchaseDate });
     this.server.create('purchase', {
-      name,
+      item,
       price: secondPrice,
       purchaseDate: moment().subtract(2, 'months').format('MM-DD-YYYY')
     });
@@ -33,11 +34,12 @@ module('Acceptance | purchase/total-per-month', hooks => {
     const firstPrice = '12.50';
     const secondPrice = '12.75';
     const purchaseDate = moment().format('MM-DD-YYYY');
+    const item = this.server.create('item', { name });
 
-    this.server.create('purchase', { name, price: firstPrice, purchaseDate });
-    this.server.create('purchase', { name, price: secondPrice, purchaseDate });
+    this.server.create('purchase', { item, price: firstPrice, purchaseDate });
+    this.server.create('purchase', { item, price: secondPrice, purchaseDate });
     this.server.create('purchase', {
-      name,
+      item,
       price: secondPrice,
       purchaseDate: moment('12/12/2012').format('MM-DD-YYYY')
     });

@@ -65,9 +65,11 @@ export default function() {
     });
 
     const purchasePrices = purchases.models.map(purchase => {
-      const sharedNamePurchases = purchases.models.filter(shared => shared.name == purchase.name);
-      const total = sharedNamePurchases.reduce(function(a, b) { return a + parseFloat(b.price) }, 0);
-      return { name: purchase.name, price: total };
+      const sharedItemPurchases = purchases.models.filter(shared => {
+        return shared.item.attrs.id == purchase.item.attrs.id;
+      });
+      const total = sharedItemPurchases.reduce(function(a, b) { return a + parseFloat(b.price) }, 0);
+      return { name: purchase.item.attrs.name, price: total };
     }).uniqBy('name');
     purchasePrices;
 

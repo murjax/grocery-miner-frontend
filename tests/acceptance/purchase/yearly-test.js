@@ -13,8 +13,9 @@ module('Acceptance | purchase/yearly', hooks => {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';
     const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearItem = this.server.create('item', { name: thisYearName });
     this.server.create('purchase',
-      { name: thisYearName,
+      { item: thisYearItem,
         price: thisYearPrice,
         purchaseDate: thisYearPurchaseDate
       });
@@ -22,9 +23,10 @@ module('Acceptance | purchase/yearly', hooks => {
     const lastYearName = 'Oranges';
     const lastYearPrice = '14.50';
     const lastYearPurchaseDate = moment().subtract(1, 'years').format('MM-DD-YYYY');
+    const lastYearItem = this.server.create('item', { name: lastYearName });
     this.server.create('purchase',
       {
-        name: lastYearName,
+        item: lastYearItem,
         price: lastYearPrice,
         purchaseDate: lastYearPurchaseDate
       });
@@ -44,8 +46,9 @@ module('Acceptance | purchase/yearly', hooks => {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';
     const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearItem = this.server.create('item', { name: thisYearName });
     this.server.create('purchase',
-      { name: thisYearName,
+      { item: thisYearItem,
         price: thisYearPrice,
         purchaseDate: thisYearPurchaseDate
       });
@@ -53,9 +56,10 @@ module('Acceptance | purchase/yearly', hooks => {
     const otherYearName = 'Oranges';
     const otherYearPrice = '14.50';
     const otherYearPurchaseDate = '11-06-2012';
+    const otherYearItem = this.server.create('item', { name: otherYearName });
     this.server.create('purchase',
       {
-        name: otherYearName,
+        item: otherYearItem,
         price: otherYearPrice,
         purchaseDate: otherYearPurchaseDate
       });

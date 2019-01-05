@@ -13,45 +13,53 @@ module('Acceptance | purchase/expense', hooks => {
     const expensivePurchaseName = 'Apples';
     const expensivePurchasePrice = '135.50';
     const expensivePurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const expensiveItem = this.server.create('item', { name: expensivePurchaseName });
     this.server.create('purchase',
-      { name: expensivePurchaseName,
+      { item: expensiveItem,
         price: expensivePurchasePrice,
         purchaseDate: expensivePurchasePurchaseDate
       });
     const cheapPurchaseName = 'Oranges';
     const cheapPurchasePrice = '13.50';
     const cheapPurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const cheapItem = this.server.create('item', { name: cheapPurchaseName });
     this.server.create('purchase',
-      { name: cheapPurchaseName,
+      { item: cheapItem,
         price: cheapPurchasePrice,
         purchaseDate: cheapPurchasePurchaseDate
       });
 
+    const randomItem = this.server.create('item', { name: 'Random' });
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     const oldExpensivePurchaseName = 'Chicken';
     const oldExpensivePurchasePrice = '235.50';
     const oldExpensivePurchasePurchaseDate = moment().subtract(2, 'months').format('MM-DD-YYYY');
+    const oldExpensiveItem = this.server.create('item', { name: oldExpensivePurchaseName });
     this.server.create('purchase',
-      { name: oldExpensivePurchaseName,
+      { item: oldExpensiveItem,
         price: oldExpensivePurchasePrice,
         purchaseDate: oldExpensivePurchasePurchaseDate
       });
@@ -74,45 +82,53 @@ module('Acceptance | purchase/expense', hooks => {
     const expensivePurchaseName = 'Apples';
     const expensivePurchasePrice = '135.50';
     const expensivePurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const expensiveItem = this.server.create('item', { name: expensivePurchaseName });
     this.server.create('purchase',
-      { name: expensivePurchaseName,
+      { item: expensiveItem,
         price: expensivePurchasePrice,
         purchaseDate: expensivePurchasePurchaseDate
       });
     const cheapPurchaseName = 'Oranges';
     const cheapPurchasePrice = '13.50';
     const cheapPurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const cheapItem = this.server.create('item', { name: cheapPurchaseName });
     this.server.create('purchase',
-      { name: cheapPurchaseName,
+      { item: cheapItem,
         price: cheapPurchasePrice,
         purchaseDate: cheapPurchasePurchaseDate
       });
 
+    const randomItem = this.server.create('item', { name: 'Random' });
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     this.server.create('purchase',
-      { price: '45.50',
+      { item: randomItem,
+        price: '45.50',
         purchaseDate: cheapPurchasePurchaseDate
       });
 
     const oldExpensivePurchaseName = 'Chicken';
     const oldExpensivePurchasePrice = '235.50';
     const oldExpensivePurchasePurchaseDate = moment().subtract(2, 'months').format('MM-DD-YYYY');
+    const oldExpensiveItem = this.server.create('item', { name: oldExpensivePurchaseName });
     this.server.create('purchase',
-      { name: oldExpensivePurchaseName,
+      { item: oldExpensiveItem,
         price: oldExpensivePurchasePrice,
         purchaseDate: oldExpensivePurchasePurchaseDate
       });

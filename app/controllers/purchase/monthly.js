@@ -9,7 +9,7 @@ export default Controller.extend({
     this.columns = [
       {
         name: 'Name',
-        valuePath: 'name',
+        valuePath: 'item.name',
       },
       {
         name: 'Price',

@@ -40,6 +40,9 @@ export default Controller.extend({
     setDate(selectedDate) {
       set(this, 'purchaseDate', selectedDate);
     },
+    setPrice(price) {
+      set(this, 'price', price);
+    },
     async onSubmit() {
       try {
         await RSVP.all(this.model.draftPurchases.map(purchase => {

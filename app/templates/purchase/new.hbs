@@ -1,29 +1,45 @@
 {{#each model.draftPurchases as |purchase|}}
-  <p>{{purchase.item.name}} {{purchase.price}} {{purchase.purchaseDate}}</p>
-  <a href="#" {{action "deletePurchase" purchase}}>Delete</a>
+  <div class="pending-purchase">
+    <span class="badge badge-primary">
+      {{purchase.item.name}} ${{purchase.price}}
+      <a href="#" {{action "deletePurchase" purchase}}>Delete</a>
+    </span>
+  </div>
 {{/each}}
 
-<form {{action "onSubmit" on="submit"}}>
-  <label for="name">Name</label>
-  {{#power-select-typeahead search=(action 'searchAsync') selected=name onchange=(action (mut name)) as |name|}}
-    {{name}}
-  {{/power-select-typeahead}}
-  <label for="price">Price</label>
-  {{input
-    id="price"
-    placeholder="Price"
-    value=price
-  }}
-  <label for="purhcase-date">Purchase Date</label>
-  {{pikaday-input
-    value=purchaseDate
-    id="purchase-date"
-    format="MM-DD-YYYY"
-    onSelection=(action "setDate")
-  }}
-  <button class="add-purchase" {{action "addPurchase"}}>Add Purchase</button>
-  <button class="submit" type="submit">Submit</button>
-</form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="col-md-12">
+          {{#bs-form onSubmit=(action "onSubmit") as |form|}}
+            {{#form.group}}
+              {{#form.group}}
+                <label for="name">Name</label>
+                {{#power-select-typeahead search=(action 'searchAsync') selected=name onchange=(action (mut name)) as |name|}}
+                  {{name}}
+                {{/power-select-typeahead}}
+              {{/form.group}}
+              {{form.element controlType="price" label="Price" value=price onChange=(action "setPrice")}}
+              {{#form.group}}
+                <label for="purhcase-date">Purchase Date</label>
+                {{pikaday-input
+                  class="form-control"
+                  value=purchaseDate
+                  id="purchase-date"
+                  format="MM-DD-YYYY"
+                  onSelection=(action "setDate")
+                }}
+              {{/form.group}}
+            {{/form.group}}
+             <button class="btn btn-info add-purchase" {{action "addPurchase"}}>Add Purchase</button>
+            <button class="btn btn-primary submit" type="submit">Submit</button>
+          {{/bs-form}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 {{#if errorMessage}}
   <div class="errors">

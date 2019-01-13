@@ -1,0 +1,14 @@
+.ember-power-select-typeahead-input {
+  border: 0;
+  height: 38px;
+}
+
+.ember-power-select-trigger {
+  padding: 0;
+  border-color: rgb(206, 212, 218);
+  border-radius: 6.4px;
+}
+
+.container {
+  margin-top: 10px;
+}

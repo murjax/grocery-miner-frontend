@@ -1,18 +1,53 @@
-<nav>
-  {{#if session.isAuthenticated}}
-    <button
-      class="logout"
-      {{action "invalidateSession"}}
-    >
-      Logout
-    </button>
-  {{else}}
-    {{#link-to "login"}}Login{{/link-to}}
-    {{#link-to "signup"}}Sign Up{{/link-to}}
-  {{/if}}
-  {{#link-to "home"}}
-    Home
-  {{/link-to}}
-</nav>
+{{#bs-navbar class="bg-primary" backgroundColor="default" type="dark" as |navbar|}}
+  {{#navbar.content}}
+    {{#navbar.nav as |nav|}}
+      {{#nav.item}}
+        {{#nav.link-to "home"}}Home{{/nav.link-to}}
+      {{/nav.item}}
+      {{#if session.isAuthenticated}}
+        {{#nav.item}}
+          {{#link-to "purchase.new" class="nav-link"}}Log Purchases{{/link-to}}
+        {{/nav.item}}
+        {{#nav.dropdown as |dd|}}
+          {{#dd.toggle}}Reports{{/dd.toggle}}
+          {{#dd.menu class="dropdown-menu" as |menu|}}
+            {{#menu.item}}
+              {{#link-to "purchase.monthly" class="dropdown-item"}}Monthly Expenditures{{/link-to}}
+            {{/menu.item}}
+            {{#menu.item}}
+              {{#link-to "purchase.yearly" class="dropdown-item"}}Yearly Expenditures{{/link-to}}
+            {{/menu.item}}
+            {{#menu.item}}
+              {{#link-to "purchase.expense" class="dropdown-item"}}Most Expensive Purchases{{/link-to}}
+            {{/menu.item}}
+            {{#menu.item}}
+              {{#link-to "purchase.frequent" class="dropdown-item"}}Most Frequent Purchases{{/link-to}}
+            {{/menu.item}}
+            {{#menu.item}}
+              {{#link-to "purchase.total-per-month" class="dropdown-item"}}Purchase Count{{/link-to}}
+            {{/menu.item}}
+          {{/dd.menu}}
+        {{/nav.dropdown}}
+        {{#nav.item}}
+          <a
+            href="#"
+            class="logout nav-link"
+            {{action "invalidateSession"}}
+          >
+            Logout
+          </a>
+        {{/nav.item}}
+      {{else}}
+        {{#nav.item}}
+          {{#nav.link-to "login"}}Login{{/nav.link-to}}
+        {{/nav.item}}
+        {{#nav.item}}
+          {{#nav.link-to "signup"}}Signup{{/nav.link-to}}
+        {{/nav.item}}
+      {{/if}}
+    {{/navbar.nav}}
+  {{/navbar.content}}
+{{/bs-navbar}}
+
 {{ember-notify}}
 {{outlet}}

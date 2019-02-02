@@ -1,24 +1,39 @@
-{{#power-select
-  options=months
-  selected=month
-  triggerClass="month-select"
-  onchange=(action (mut month))
-as |month|
-}}
-  {{month}}
-{{/power-select}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2">
+              {{#power-select
+                options=months
+                selected=month
+                triggerClass="month-select"
+                onchange=(action (mut month))
+              as |month|
+              }}
+                {{month}}
+              {{/power-select}}
+            </div>
 
-{{#power-select
-  options=years
-  selected=year
-  triggerClass="year-select"
-  onchange=(action (mut year))
-as |year|
-}}
-  {{year}}
-{{/power-select}}
-
-{{#ember-table as |t|}}
-  {{t.head columns=columns}}
-  {{t.body rows=model.purchases}}
-{{/ember-table}}
+            <div class="col-md-2">
+              {{#power-select
+                options=years
+                selected=year
+                triggerClass="year-select"
+                onchange=(action (mut year))
+              as |year|
+              }}
+                {{year}}
+              {{/power-select}}
+            </div>
+          </div>
+          {{#ember-table class="table table-hover" as |t|}}
+            {{t.head columns=columns}}
+            {{t.body rows=model.purchases}}
+          {{/ember-table}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

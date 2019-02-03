@@ -1,4 +1,18 @@
-{{#ember-table as |t|}}
-  {{t.head columns=columns}}
-  {{t.body rows=model}}
-{{/ember-table}}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          {{#light-table table class="table table-striped" as |t|}}
+            {{t.head}}
+            {{#t.body as |body|}}
+              {{#body.expanded-row as |row|}}
+                {{row}}
+              {{/body.expanded-row}}
+            {{/t.body}}
+          {{/light-table}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

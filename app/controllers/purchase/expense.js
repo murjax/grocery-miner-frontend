@@ -1,4 +1,6 @@
 import Controller from '@ember/controller';
+import { computed } from '@ember/object';
+import Table from 'ember-light-table';
 
 export default Controller.extend({
   init() {
@@ -7,18 +9,22 @@ export default Controller.extend({
     this.year = '30',
     this.columns = [
       {
-        name: 'Name',
-          valuePath: 'item.name',
+        label: 'Name',
+        valuePath: 'item.name',
       },
       {
-        name: 'Price',
+        label: 'Price',
         valuePath: 'price',
       },
       {
-        name: 'Purchase Date',
+        label: 'Purchase Date',
         valuePath: 'purchase_date',
       },
     ];
   },
   queryParams: ['range'],
+
+  table: computed('model', function() {
+    return new Table(this.get('columns'), this.get('model.purchases'));
+  }),
 });

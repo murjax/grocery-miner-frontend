@@ -1,6 +1,7 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 import moment from 'moment';
+import Table from 'ember-light-table';
 
 export default Controller.extend({
   init() {
@@ -8,20 +9,24 @@ export default Controller.extend({
     this.months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
     this.columns = [
       {
-        name: 'Name',
+        label: 'Name',
         valuePath: 'item.name',
       },
       {
-        name: 'Price',
+        label: 'Price',
         valuePath: 'price',
       },
       {
-        name: 'Purchase Date',
+        label: 'Purchase Date',
         valuePath: 'purchase_date',
       },
     ];
   },
   queryParams: ['month', 'year'],
+
+  table: computed('model', function() {
+    return new Table(this.get('columns'), this.get('model.purchases'));
+  }),
 
   years: computed(function() {
     const currentYear = new Date().getFullYear();

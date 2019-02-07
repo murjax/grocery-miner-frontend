@@ -1,24 +1,37 @@
-<form {{action "submit" on="submit"}}>
-  <label for="email">Email</label>
-  {{input
-    id="email"
-    value=email
-    placeholder="enter email"
-  }}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="col-md-12">
+          {{#bs-form onSubmit=(action "submit") as |form|}}
+            {{#form.group}}
+              {{form.element
+                id="email"
+                controlType="email"
+                label="Email"
+                value=email
+                onChange=(action "setEmail")
+              }}
+            {{/form.group}}
+            {{#form.group}}
+              {{form.element
+                id="password"
+                controlType="password"
+                label="Password"
+                value=password
+                onChange=(action "setPassword")
+              }}
+            {{/form.group}}
+            <button class="btn btn-primary submit" type="submit">Sign Up</button>
+          {{/bs-form}}
 
-  <label for="password">Password</label>
-  {{input
-    id="password"
-    value=password
-    type="password"
-    placeholder="enter password"
-  }}
-
-  <button class="submit" type="submit">Sign Up</button>
-</form>
-
-{{#if errorMessage}}
-  <div class="errors">
-    {{errorMessage}}
+          {{#if errorMessage}}
+            <div class="errors">
+              {{errorMessage}}
+            </div>
+          {{/if}}
+        </div>
+      </div>
+    </div>
   </div>
-{{/if}}
+</div>

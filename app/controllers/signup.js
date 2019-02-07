@@ -27,6 +27,12 @@ export default Controller.extend({
       } else {
         this.set('errorMessage', 'Email and password are required');
       }
+    },
+    setEmail(email){
+      this.set('email', email);
+    },
+    setPassword(password){
+      this.set('password', password);
     }
   }
 });

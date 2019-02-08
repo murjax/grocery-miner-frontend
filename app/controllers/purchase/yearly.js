@@ -40,4 +40,9 @@ export default Controller.extend({
   year: computed(function() {
     return new Date().getFullYear();
   }),
+
+  total: computed('model', function() {
+    const prices = this.model.purchases.map(purchase => purchase.price);
+    return prices.reduce((a, b) => parseFloat(a) + parseFloat(b));
+  }),
 });

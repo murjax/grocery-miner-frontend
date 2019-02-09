@@ -52,7 +52,10 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-    // here you can enable a production-specific feature
+    ENV['ember-simple-auth'] = {
+      store: 'ember-simple-auth-session-store:local-storage'
+    };
+    ENV.host = 'https://grocery-miner-api.herokuapp.com';
   }
 
   return ENV;

@@ -43,6 +43,9 @@ export default Controller.extend({
 
   total: computed('model', function() {
     const prices = this.model.purchases.map(purchase => purchase.price);
-    return prices.reduce((a, b) => parseFloat(a) + parseFloat(b));
+    if (prices.length) {
+      return prices.reduce((a, b) => parseFloat(a) + parseFloat(b));
+    }
+    return 0;
   }),
 });

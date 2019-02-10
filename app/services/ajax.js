@@ -5,7 +5,7 @@ import { computed } from '@ember/object';
 export default AjaxService.extend({
   session: inject('session'),
   trustedHosts: computed(function() {
-    return ['localhost'];
+    return ['localhost', 'grocery-miner-api.herokuapp.com'];
   }),
   headers: computed('session.data.authenticated', {
     get() {

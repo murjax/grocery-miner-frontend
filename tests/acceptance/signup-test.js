@@ -18,8 +18,8 @@ module('Acceptance | signup', hooks => {
       }
     });
     await visit('/signup');
-    await fillIn('#email', 'foo@bar.com');
-    await fillIn('#password', 'password');
+    await fillIn('#email input', 'foo@bar.com');
+    await fillIn('#password input', 'password');
     await click('.submit');
   });
 

@@ -16,11 +16,22 @@
             {{#form.group}}
               {{#form.group}}
                 <label for="name">Name</label>
-                {{#power-select-typeahead search=(action 'searchAsync') selected=name onchange=(action (mut name)) as |name|}}
+                {{#power-select-typeahead
+                  search=(action "searchAsync")
+                  selected=name
+                  onchange=(action (mut name))
+                as |name|
+                }}
                   {{name}}
                 {{/power-select-typeahead}}
               {{/form.group}}
-              {{form.element controlType="price" label="Price" value=price onChange=(action "setPrice")}}
+              {{form.element
+                id="price"
+                controlType="price"
+                label="Price"
+                value=price
+                onChange=(action "setPrice")
+              }}
               {{#form.group}}
                 <label for="purhcase-date">Purchase Date</label>
                 {{pikaday-input

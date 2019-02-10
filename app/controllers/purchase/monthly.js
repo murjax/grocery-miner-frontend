@@ -1,6 +1,5 @@
 import Controller from '@ember/controller';
 import { computed } from '@ember/object';
-import { mapBy, sum } from '@ember/object/computed';
 import moment from 'moment';
 import Table from 'ember-light-table';
 
@@ -50,6 +49,9 @@ export default Controller.extend({
 
   total: computed('model', function() {
     const prices = this.model.purchases.map(purchase => purchase.price);
-    return prices.reduce((a, b) => parseFloat(a) + parseFloat(b));
+    if (prices.length) {
+      return prices.reduce((a, b) => parseFloat(a) + parseFloat(b));
+    }
+    return 0;
   }),
 });

@@ -25,14 +25,14 @@ module('Acceptance | purchase/new', hooks => {
 
     await visit('/purchase/new');
     await fillIn('.ember-power-select-typeahead-input', firstPurchaseName);
-    await fillIn('#price', firstPurchasePrice);
-    await click('#price');
+    await fillIn('#price input', firstPurchasePrice);
+    await click('#price input');
     await fillIn('#purchase-date', firstPurchasePurchaseDate);
 
     await click('.add-purchase');
 
     await fillIn('.ember-power-select-typeahead-input', secondPurchaseName);
-    await fillIn('#price', secondPurchasePrice);
+    await fillIn('#price input', secondPurchasePrice);
     await fillIn('#purchase-date', secondPurchasePurchaseDate);
 
     await click('.add-purchase');

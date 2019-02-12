@@ -31,3 +31,15 @@ body {
 .card .btn {
   margin-bottom: 10px;
 }
+
+.badge-delete {
+  color: #888;
+}
+
+.badge-delete:hover{
+  color: #888;
+}
+
+.badge {
+  padding: 5px;
+}

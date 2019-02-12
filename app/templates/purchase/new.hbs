@@ -1,15 +1,17 @@
-{{#each model.draftPurchases as |purchase|}}
-  <div class="pending-purchase">
-    <span class="badge badge-primary">
-      {{purchase.item.name}} ${{purchase.price}}
-      <a href="#" {{action "deletePurchase" purchase}}>Delete</a>
-    </span>
-  </div>
-{{/each}}
 
 <div class="container">
   <div class="row">
     <div class="col-md-12">
+      {{#each model.draftPurchases as |purchase|}}
+        <div class="pending-purchase pb-3">
+          <span class="badge badge-primary">
+            {{purchase.item.name}} ${{purchase.price}}
+            <a href="#" class="badge-delete" {{action "deletePurchase" purchase}}>
+              {{fa-icon "times"}}
+            </a>
+          </span>
+        </div>
+      {{/each}}
       <div class="card">
         <div class="col-md-12">
           {{#bs-form onSubmit=(action "onSubmit") as |form|}}

@@ -22,16 +22,27 @@ export default Controller.extend({
         this.model.items.findBy('name', this.name) :
         await this.store.createRecord('item', { name: this.name });
 
+      var itemValid = true;
+
       if (item.hasDirtyAttributes) {
-        await item.save();
+        try {
+          await item.save();
+        } catch(errors) {
+          const errorTitles = errors.errors.mapBy('title');
+          const errorMessage = errorTitles.join(', ');
+          itemValid = false;
+          this.get('notify').error(errorMessage);
+        }
       }
 
-      const purchase = this.store.createRecord('purchase', {
-        item,
-        price: this.price,
-        purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
-      });
-      this.model.draftPurchases.pushObject(purchase);
+      if (itemValid) {
+        const purchase = this.store.createRecord('purchase', {
+          item,
+          price: this.price,
+          purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
+        });
+        this.model.draftPurchases.pushObject(purchase);
+      }
     },
     deletePurchase(purchase) {
       this.model.draftPurchases.removeObject(purchase);

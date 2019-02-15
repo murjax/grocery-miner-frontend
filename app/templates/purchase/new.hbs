@@ -17,7 +17,7 @@
           {{#bs-form onSubmit=(action "onSubmit") as |form|}}
             {{#form.group}}
               {{#form.group}}
-                <label for="name">Name</label>
+                <label for="name">Name *</label>
                 {{#power-select-typeahead
                   search=(action "searchAsync")
                   selected=name
@@ -30,12 +30,12 @@
               {{form.element
                 id="price"
                 controlType="price"
-                label="Price"
+                label="Price *"
                 value=price
                 onChange=(action "setPrice")
               }}
               {{#form.group}}
-                <label for="purhcase-date">Purchase Date</label>
+                <label for="purhcase-date">Purchase Date *</label>
                 {{pikaday-input
                   class="form-control"
                   value=purchaseDate

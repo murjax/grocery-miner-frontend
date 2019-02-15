@@ -6,6 +6,8 @@ import {
   click,
   fillIn
 } from '@ember/test-helpers';
+import Response from 'ember-cli-mirage/response';
+import config from '../../../config/environment';
 import moment from 'moment';
 
 module('Acceptance | purchase/new', hooks => {
@@ -49,5 +51,28 @@ module('Acceptance | purchase/new', hooks => {
     assert.equal(secondPurchase.item.name, secondPurchaseName);
     assert.equal(secondPurchase.price, secondPurchasePrice);
     assert.equal(secondPurchase.purchaseDate, secondPurchaseFormattedPurchaseDate);
+  });
+
+  test('new item fails to save', async function(assert) {
+    this.server.post(`${config.host}/items`, () => {
+      return new Response(422, {}, {
+        "errors": []
+      });
+    });
+
+    const purchaseName = 'Apples';
+    const purchasePrice = '12.50';
+    const purchaseDate = '12/12/2012';
+
+    await visit('/purchase/new');
+    await fillIn('.ember-power-select-typeahead-input', purchaseName);
+    await fillIn('#price input', purchasePrice);
+    await click('#price input');
+    await fillIn('#purchase-date', purchaseDate);
+
+    await click('.add-purchase');
+
+    await click('.submit');
+    assert.equal(this.server.schema.purchases.all().length, 0);
   });
 });

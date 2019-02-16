@@ -1,0 +1,30 @@
+<li
+  class="arrow prev {{if canStepBackward "enabled-arrow" "disabled"}} page-item"
+>
+  <a class="page-link" href="#" {{action "incrementPage" -1}}>&laquo;</a>
+</li>
+
+{{#each pageItems as |item|}}
+  {{#if item.dots}}
+    <li class="dots disabled page-item">
+      <span>...</span>
+    </li>
+  {{/if}}
+  {{#if item.current}}
+    <li class="active page-item">
+      <a class="page-link">{{item.page}}</a>
+    </li>
+  {{else}}
+    <li class="page-item">
+      <a class="page-link" href="#" {{action "pageClicked" item.page}}>
+        {{item.page}}
+      </a>
+    </li>
+  {{/if}}
+{{/each}}
+
+<li
+  class="arrow next {{if canStepForward "enabled-arrow" "disabled"}} page-item"
+>
+  <a class="page-link" href="#" {{action "incrementPage" 1}}>&raquo;</a>
+</li>

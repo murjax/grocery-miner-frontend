@@ -3763,6 +3763,15 @@ ember-cli-normalize-entity-name@^1.0.0:
   dependencies:
     silent-error "^1.0.0"
 
+ember-cli-pagination@^3.1.4:
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/ember-cli-pagination/-/ember-cli-pagination-3.1.4.tgz#9e4e9d4135da0e3714ffb3c69177cd5fdccd562e"
+  integrity sha512-xRyM4YDYV5LBuIUIEtbXkoL7oph2t6jA51B6+l7AK02HBs9ZU2JEMvsm0M5k2B3GeCuf/kRQrU7Q/NSYaOJKtQ==
+  dependencies:
+    ember-cli-babel "^6.8.2"
+    ember-cli-htmlbars "^2.0.3"
+    ember-cli-version-checker "^2.1.0"
+
 ember-cli-path-utils@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-cli-path-utils/-/ember-cli-path-utils-1.0.0.tgz#4e39af8b55301cddc5017739b77a804fba2071ed"

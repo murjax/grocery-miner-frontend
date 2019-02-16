@@ -43,3 +43,8 @@ body {
 .badge {
   padding: 5px;
 }
+
+ul.pagination {
+  display: inline-flex !important;
+
+}

@@ -42,6 +42,27 @@ module('Acceptance | purchase/yearly', hooks => {
     assert.dom('*').doesNotIncludeText(lastYearPurchaseDate);
   });
 
+  test('yearly expenditure report pagination', async function(assert) {
+    const thisYearName = 'Apples';
+    const thisYearPrice = '13.50';
+    const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearItem = this.server.create('item', { name: thisYearName });
+
+    this.server.createList(
+      'purchase',
+      26,
+      {
+        item: thisYearItem,
+        price: thisYearPrice,
+        purchaseDate: thisYearPurchaseDate
+      }
+    );
+
+    await visit('/purchase/yearly');
+    assert.dom('.pagination .active').includesText('1');
+    assert.dom('.pagination').includesText('2');
+  });
+
   test('yearly expenditure report with date params', async function(assert) {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';

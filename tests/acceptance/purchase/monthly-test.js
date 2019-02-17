@@ -42,6 +42,27 @@ module('Acceptance | purchase/monthly', hooks => {
     assert.dom('*').doesNotIncludeText(lastMonthPurchaseDate);
   });
 
+  test('monthly expenditure report pagination', async function(assert) {
+    const thisMonthName = 'Apples';
+    const thisMonthPrice = '13.50';
+    const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthItem = this.server.create('item', { name: thisMonthName });
+
+    this.server.createList(
+      'purchase',
+      26,
+      {
+        item: thisMonthItem,
+        price: thisMonthPrice,
+        purchaseDate: thisMonthPurchaseDate
+      }
+    );
+
+    await visit('/purchase/monthly');
+    assert.dom('.pagination .active').includesText('1');
+    assert.dom('.pagination').includesText('2');
+  });
+
   test('monthly expenditure report with date params', async function(assert) {
     const thisMonthName = 'Apples';
     const thisMonthPrice = '13.50';

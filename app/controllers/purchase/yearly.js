@@ -20,7 +20,14 @@ export default Controller.extend({
       },
     ];
   },
-  queryParams: ['year'],
+  queryParams: ['year', 'page', 'perPage'],
+
+  page: 1,
+  perPage: 25,
+
+  totalPages: computed('model', function() {
+    return this.model.meta.total_pages;
+  }),
 
   table: computed('model', function() {
     return new Table(this.get('columns'), this.get('model.purchases'));

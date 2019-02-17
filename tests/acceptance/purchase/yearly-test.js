@@ -63,6 +63,28 @@ module('Acceptance | purchase/yearly', hooks => {
     assert.dom('.pagination').includesText('2');
   });
 
+  test('including total price from meta', async function(assert) {
+    const count = 3;
+    const thisYearName = 'Apples';
+    const thisYearPrice = '13.50';
+    const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearItem = this.server.create('item', { name: thisYearName });
+
+    this.server.createList(
+      'purchase',
+      count,
+      {
+        item: thisYearItem,
+        price: thisYearPrice,
+        purchaseDate: thisYearPurchaseDate
+      }
+    );
+
+    await visit('/purchase/monthly');
+    const expectedTotal = parseFloat(thisYearPrice) * count;
+    assert.dom('h4').includesText(expectedTotal);
+  });
+
   test('yearly expenditure report with date params', async function(assert) {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';

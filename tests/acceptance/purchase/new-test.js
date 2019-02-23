@@ -53,6 +53,29 @@ module('Acceptance | purchase/new', hooks => {
     assert.equal(secondPurchase.purchaseDate, secondPurchaseFormattedPurchaseDate);
   });
 
+  test('clearing name and price after purchase added', async function(assert) {
+    const purchaseName = 'Apples';
+    const purchasePrice = '12.50';
+    const purchaseDate = '12/12/2012';
+    const formattedPurchaseDate = moment(purchaseDate).format('MM-DD-YYYY');
+
+    await visit('/purchase/new');
+    await fillIn('.ember-power-select-typeahead-input', purchaseName);
+    await fillIn('#price input', purchasePrice);
+    await click('#price input');
+    await fillIn('#purchase-date', purchaseDate);
+
+    assert.dom('.ember-power-select-typeahead-input').hasValue(purchaseName);
+    assert.dom('#price input').hasValue(purchasePrice);
+    assert.dom('#purchase-date').hasValue(formattedPurchaseDate);
+
+    await click('.add-purchase');
+
+    assert.dom('.ember-power-select-typeahead-input').hasValue('');
+    assert.dom('#price input').hasValue('');
+    assert.dom('#purchase-date').hasValue(formattedPurchaseDate);
+  });
+
   test('new item fails to save', async function(assert) {
     this.server.post(`${config.host}/items`, () => {
       return new Response(422, {}, {

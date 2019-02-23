@@ -41,6 +41,8 @@ export default Controller.extend({
           price: this.price,
           purchaseDate: (moment(this.purchaseDate).format('YYYY-MM-DD'))
         });
+        set(this, 'name', null);
+        set(this, 'price', null);
         this.model.draftPurchases.pushObject(purchase);
       }
     },

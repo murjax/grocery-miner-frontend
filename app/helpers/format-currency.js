@@ -2,6 +2,7 @@ import { helper } from '@ember/component/helper';
 import $ from 'jquery';
 
 export function formatCurrency(value) {
+  value = value[0];
   if (!$.isNumeric(value)) {
     return '';
   }

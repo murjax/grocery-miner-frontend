@@ -15,6 +15,7 @@ export default Controller.extend({
       {
         label: 'Price',
         valuePath: 'price',
+        cellComponent: 'currency-formatter'
       },
       {
         label: 'Purchase Date',

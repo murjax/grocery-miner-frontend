@@ -27,6 +27,7 @@ module('Acceptance | purchase/total-per-month', hooks => {
     await visit('purchase/total-per-month');
     assert.dom('*').includesText(name);
     assert.dom('*').includesText(parseFloat(firstPrice) + parseFloat(secondPrice));
+    assert.dom('*').includesText('3');
   });
 
   test('selecting a different month', async function(assert) {
@@ -50,5 +51,6 @@ module('Acceptance | purchase/total-per-month', hooks => {
 
     assert.dom('*').includesText(name);
     assert.dom('*').includesText(secondPrice);
+    assert.dom('*').includesText('2');
   });
 });

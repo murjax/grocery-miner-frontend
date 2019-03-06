@@ -69,7 +69,7 @@ export default function() {
         return shared.item.attrs.id == purchase.item.attrs.id;
       });
       const total = sharedItemPurchases.reduce(function(a, b) { return a + parseFloat(b.price) }, 0);
-      return { name: purchase.item.attrs.name, price: total };
+      return { name: purchase.item.attrs.name, price: total, count: sharedItemPurchases.length };
     }).uniqBy('name');
     purchasePrices;
 

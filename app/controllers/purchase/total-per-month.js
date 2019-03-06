@@ -17,6 +17,10 @@ export default Controller.extend({
         valuePath: 'price',
         cellComponent: 'currency-formatter'
       },
+      {
+        label: 'Count',
+        valuePath: 'count',
+      },
     ];
   },
   queryParams: ['month', 'year'],

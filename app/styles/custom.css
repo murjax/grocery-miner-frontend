@@ -20,6 +20,16 @@ body {
 .card {
   box-shadow: 0 1px 3px 0 rgba(31,36,38,.1);
   border: 0;
+  border-radius: 0;
+}
+
+.btn {
+  box-shadow: 0 1px 3px 0 rgba(31,36,38,.1);
+  border-radius: 0;
+}
+
+form {
+  padding-top: 10px;
 }
 
 .auth-box {

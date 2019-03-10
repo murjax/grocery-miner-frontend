@@ -18,6 +18,7 @@ export default Controller.extend({
       {
         label: 'Purchase Date',
         valuePath: 'purchase_date',
+        cellComponent: 'date-formatter'
       },
     ];
   },

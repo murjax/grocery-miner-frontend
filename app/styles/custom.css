@@ -14,18 +14,86 @@
 }
 
 body {
-  background-color: #f5f7f8;
+  /* background-color: #ddca7d; */
+  background-color: #edf1f5;
+}
+
+.navbar.bg-light {
+  background-color: #242331 !important;
+}
+
+.nav-link {
+  color: #8898aa !important;
+}
+
+.nav-link.active {
+  color: #f5f7f8 !important;
+}
+
+.nav-link:hover {
+  color: #f5f7f8 !important;
 }
 
 .card {
   box-shadow: 0 1px 3px 0 rgba(31,36,38,.1);
   border: 0;
   border-radius: 0;
+  background-color: #f5f7f8;
 }
 
 .btn {
   box-shadow: 0 1px 3px 0 rgba(31,36,38,.1);
   border-radius: 0;
+}
+
+.btn-primary {
+  background-color: #a27035;
+  border-color: #a27035;
+}
+
+.btn-primary:hover {
+  background-color: #8C6D4A;
+  border-color: #8C6D4A;
+}
+
+.btn-success {
+  background-color: #45B57D;
+  border-color: #45B57D;
+}
+
+.btn-success:hover {
+  background-color: #5E9C7D;
+  border-color: #5E9C7D;
+}
+
+.btn-info {
+  background-color: #318DB4;
+  border-color: #318DB4;
+}
+
+.btn-info:hover {
+  background-color: #48849D;
+  border-color: #48849D;
+}
+
+.btn-warning {
+  background-color: #EDAF5A;
+  border-color: #EDAF5A;
+}
+
+.btn-warning:hover {
+  background-color: #DAAC6C;
+  border-color: #DAAC6C;
+}
+
+.btn-danger {
+  background-color: #EA3E3E;
+  border-color: #EA3E3E;
+}
+
+.btn-danger:hover {
+  background-color: #D45454;
+  border-color: #D45454;
 }
 
 form {
@@ -50,11 +118,18 @@ form {
   color: #888;
 }
 
-.badge {
-  padding: 5px;
-}
-
 ul.pagination {
   display: inline-flex !important;
 
+}
+
+.draft-purchases .badge {
+  width: 200px;
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #ddca7d;
+  font-size: 12px;
 }

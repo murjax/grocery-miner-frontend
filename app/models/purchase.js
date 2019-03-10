@@ -7,5 +7,5 @@ export default Model.extend({
   purchaseDate: attr('string'),
   count: attr('number'),
 
-  item: belongsTo(),
+  item: belongsTo()
 });

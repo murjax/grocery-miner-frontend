@@ -44,4 +44,9 @@ module('Acceptance | purchase/frequent', hooks => {
     assert.dom('*').includesText(mostFrequentName);
     assert.dom('*').doesNotIncludeText(leastFrequentName);
   });
+
+  test('empty frequent report', async function(assert) {
+    await visit('/purchase/frequent');
+    assert.dom('*').includesText('Name');
+  });
 });

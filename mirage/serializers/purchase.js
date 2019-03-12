@@ -9,9 +9,11 @@ export default ApplicationSerializer.extend({
     const json = ApplicationSerializer.prototype.serialize.apply(
       this, arguments
     );
-    json.meta.total_price = model.models.reduce(
-      (acc, purchase) =>
-      { return acc + parseFloat(purchase.price) }, 0);
+    if (json.meta) {
+      json.meta.total_price = model.models.reduce(
+        (acc, purchase) =>
+        { return acc + parseFloat(purchase.price) }, 0);
+    }
     return json;
   }
 });

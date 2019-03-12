@@ -120,4 +120,9 @@ module('Acceptance | purchase/monthly', hooks => {
     assert.dom('*').includesText(otherMonthPrice);
     assert.dom('*').includesText(otherMonthPurchaseDate);
   });
+
+  test('empty monthly report', async function(assert) {
+    await visit('/purchase/monthly');
+    assert.dom('*').includesText('Total: $0.00');
+  });
 });

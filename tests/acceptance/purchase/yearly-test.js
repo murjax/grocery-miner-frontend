@@ -119,4 +119,9 @@ module('Acceptance | purchase/yearly', hooks => {
     assert.dom('*').includesText(otherYearPrice);
     assert.dom('*').includesText(otherYearPurchaseDate);
   });
+
+  test('empty yearly report', async function(assert) {
+    await visit('/purchase/yearly');
+    assert.dom('*').includesText('Total: $0.00');
+  });
 });

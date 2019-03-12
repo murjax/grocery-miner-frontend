@@ -53,4 +53,11 @@ module('Acceptance | purchase/total-per-month', hooks => {
     assert.dom('*').includesText(secondPrice);
     assert.dom('*').includesText('2');
   });
+
+  test('empty total per month report', async function(assert) {
+    await visit('/purchase/total-per-month');
+    assert.dom('*').includesText('Name');
+    assert.dom('*').includesText('Price');
+    assert.dom('*').includesText('Count');
+  });
 });

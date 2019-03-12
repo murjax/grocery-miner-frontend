@@ -152,4 +152,11 @@ module('Acceptance | purchase/expense', hooks => {
     assert.dom('*').includesText(oldExpensivePurchasePrice);
     assert.dom('*').includesText(oldExpensivePurchasePurchaseDate);
   });
+
+  test('empty expense report', async function(assert) {
+    await visit('/purchase/expense');
+    assert.dom('*').includesText('Name')
+    assert.dom('*').includesText('Price')
+    assert.dom('*').includesText('Purchase Date')
+  });
 });

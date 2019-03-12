@@ -10,7 +10,7 @@ export default Route.extend({
 
   model(params) {
     return this.get('ajax').request(`${config.host}/purchases/expense`, {
-      data: { range: params.range }
+      data: params
     }).then((response) => {
       return response;
     }).catch(() => {

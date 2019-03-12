@@ -11,7 +11,7 @@ export default Route.extend({
 
   model(params) {
     return this.get('ajax').request(`${config.host}/purchases/total_per_month`, {
-      data: { month: params.month, year: params.year }
+      data: params
     }).then((response) => {
       return response.purchases;
     }).catch(() => {

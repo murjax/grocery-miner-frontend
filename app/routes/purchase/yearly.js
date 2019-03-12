@@ -12,11 +12,7 @@ export default Route.extend({
 
   model(params) {
     return this.get('ajax').request(`${config.host}/purchases/yearly`, {
-      data: {
-        year: params.year,
-        page: params.page,
-        perPage: params.perPage
-      }
+      data: params
     }).then((response) => {
       return response;
     }).catch(() => {

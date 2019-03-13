@@ -1,37 +1,29 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card auth-box">
-        <div class="col-md-12">
-          {{#bs-form onSubmit=(action "authenticate") as |form|}}
-            {{#form.group}}
-              {{form.element
-                id="email"
-                controlType="email"
-                label="Email"
-                value=email
-                onChange=(action "setEmail")
-              }}
-            {{/form.group}}
-            {{#form.group}}
-              {{form.element
-                id="password"
-                controlType="password"
-                label="Password"
-                value=password
-                onChange=(action "setPassword")
-              }}
-            {{/form.group}}
-            <button class="btn btn-primary btn-block submit" type="submit">Login</button>
-          {{/bs-form}}
+{{#page-container}}
+  {{#auth-box}}
+    {{#bs-form onSubmit=(action "authenticate") as |form|}}
+      {{#form.group}}
+        {{form.element
+          id="email"
+          controlType="email"
+          label="Email"
+          value=email
+          onChange=(action "setEmail")
+        }}
+      {{/form.group}}
+      {{#form.group}}
+        {{form.element
+          id="password"
+          controlType="password"
+          label="Password"
+          value=password
+          onChange=(action "setPassword")
+        }}
+      {{/form.group}}
+      <button class="btn btn-primary btn-block submit" type="submit">Login</button>
+    {{/bs-form}}
 
-          {{#if errorMessage}}
-            <div class="errors">
-              {{errorMessage}}
-            </div>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    {{#if errorMessage}}
+      {{errorMessage}}
+    {{/if}}
+  {{/auth-box}}
+{{/page-container}}

@@ -1,79 +1,77 @@
-<div class="container">
+{{#page-container}}
   <div class="row">
-    <div class="col-md-12">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="card draft-purchases">
-            {{#each model.draftPurchases as |purchase|}}
-              <div class="pb-3 pr-1 badge badge-primary">
-                {{purchase.item.name}} ${{purchase.price}}
-                <a href="#" class="badge-delete" {{action "deletePurchase" purchase}}>
-                  {{fa-icon "times"}}
-                </a>
+    <div class="col-md-4">
+      <div class="card draft-purchases">
+        {{#each model.draftPurchases as |purchase|}}
+          {{purchase-badge purchase=purchase onDelete=(action "deletePurchase" purchase)}}
+        {{/each}}
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="col-md-12">
+          {{#bs-form onSubmit=(action "onSubmit") as |form|}}
+            {{#form.group}}
+              <div class="row">
+                <div class="col-md-4">
+                  {{#form.group}}
+                    {{#power-select-typeahead
+                      search=(action "searchAsync")
+                      selected=name
+                      placeholder="Name"
+                      onchange=(action (mut name))
+                    as |name|
+                    }}
+                      {{name}}
+                    {{/power-select-typeahead}}
+                  {{/form.group}}
+                </div>
+                <div class="col">
+                  {{form.element
+                    id="price"
+                    controlType="price"
+                    value=price
+                    placeholder="Price"
+                    onChange=(action "setPrice")
+                  }}
+                </div>
+                <div class="col">
+                  {{#form.group}}
+                    {{pikaday-input
+                      class="form-control"
+                      autocomplete="off"
+                      value=purchaseDate
+                      id="purchase-date"
+                      placeholder="Purchase Date"
+                      format="MM-DD-YYYY"
+                      onSelection=(action "setDate")
+                    }}
+                  {{/form.group}}
+                </div>
+                <div class="col">
+                  {{bs-button
+                    type="info"
+                    class="add-purchase"
+                    icon="fa fa-plus"
+                    onClick=(action "addPurchase")
+                  }}
+                </div>
               </div>
-            {{/each}}
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="card">
-            <div class="col-md-12">
-              {{#bs-form onSubmit=(action "onSubmit") as |form|}}
-                {{#form.group}}
-                  <div class="row">
-                    <div class="col-md-4">
-                      {{#form.group}}
-                        {{#power-select-typeahead
-                          search=(action "searchAsync")
-                          selected=name
-                          placeholder="Name"
-                          onchange=(action (mut name))
-                        as |name|
-                        }}
-                          {{name}}
-                        {{/power-select-typeahead}}
-                      {{/form.group}}
-                    </div>
-                    <div class="col">
-                      {{form.element
-                        id="price"
-                        controlType="price"
-                        value=price
-                        placeholder="Price"
-                        onChange=(action "setPrice")
-                      }}
-                    </div>
-                    <div class="col">
-                      {{#form.group}}
-                        {{pikaday-input
-                          class="form-control"
-                          autocomplete="off"
-                          value=purchaseDate
-                          id="purchase-date"
-                          placeholder="Purchase Date"
-                          format="MM-DD-YYYY"
-                          onSelection=(action "setDate")
-                        }}
-                      {{/form.group}}
-                    </div>
-                    <div class="col">
-                      <button class="btn btn-info add-purchase" {{action "addPurchase"}}>
-                        {{fa-icon "plus"}}
-                      </button>
-                    </div>
-                  </div>
-                {{/form.group}}
-                <button class="btn btn-primary btn-block submit" type="submit">Submit</button>
-              {{/bs-form}}
-            </div>
-          </div>
+            {{/form.group}}
+            {{#bs-button
+              type="primary"
+              class="submit"
+              block=true
+            }}
+              Submit
+            {{/bs-button}}
+          {{/bs-form}}
         </div>
       </div>
     </div>
   </div>
-</div>
+{{/page-container}}
 
 {{#if errorMessage}}
-  <div class="errors">
-    {{errorMessage}}
-  </div>
+  {{errorMessage}}
 {{/if}}

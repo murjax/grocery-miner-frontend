@@ -1,48 +1,37 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <h4>Total: {{currency-formatter total}}</h4>
-            <div class="col-md-2">
-              {{#power-select
-                options=months
-                selected=month
-                triggerClass="month-select"
-                onchange=(action (mut month))
-              as |month|
-              }}
-                {{month}}
-              {{/power-select}}
-            </div>
+{{#page-container}}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <h4>Total: {{currency-formatter total}}</h4>
+        <div class="col-md-2">
+          {{#power-select
+            options=months
+            selected=month
+            triggerClass="month-select"
+            onchange=(action (mut month))
+          as |month|
+          }}
+            {{month}}
+          {{/power-select}}
+        </div>
 
-            <div class="col-md-2">
-              {{#power-select
-                options=years
-                selected=year
-                triggerClass="year-select"
-                onchange=(action (mut year))
-              as |year|
-              }}
-                {{year}}
-              {{/power-select}}
-            </div>
-          </div>
-
-          {{#light-table table class="table table-hover" as |t|}}
-            {{t.head}}
-            {{#t.body as |body|}}
-              {{#body.expanded-row as |row|}}
-                {{row}}
-              {{/body.expanded-row}}
-            {{/t.body}}
-          {{/light-table}}
-
-          <h4>Total: {{currency-formatter total}}</h4>
-          {{simple-pagination page=page pages=totalPages}}
+        <div class="col-md-2">
+          {{#power-select
+            options=years
+            selected=year
+            triggerClass="year-select"
+            onchange=(action (mut year))
+          as |year|
+          }}
+            {{year}}
+          {{/power-select}}
         </div>
       </div>
+
+      {{basic-table table}}
+
+      <h4>Total: {{currency-formatter total}}</h4>
+      {{simple-pagination page=page pages=totalPages}}
     </div>
   </div>
-</div>
+{{/page-container}}

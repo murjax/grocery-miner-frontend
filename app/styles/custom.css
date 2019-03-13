@@ -14,7 +14,6 @@
 }
 
 body {
-  /* background-color: #ddca7d; */
   background-color: #edf1f5;
 }
 
@@ -100,36 +99,10 @@ form {
   padding-top: 10px;
 }
 
-.auth-box {
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .card .btn {
   margin-bottom: 10px;
 }
 
-.badge-delete {
-  color: #888;
-}
-
-.badge-delete:hover{
-  color: #888;
-}
-
 ul.pagination {
   display: inline-flex !important;
-
-}
-
-.draft-purchases .badge {
-  width: 200px;
-  height: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background-color: #ddca7d;
-  font-size: 12px;
 }

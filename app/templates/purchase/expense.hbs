@@ -1,32 +1,20 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-2">
-              {{#power-select
-                options=ranges
-                selected=range
-                triggerClass="range-select"
-                onchange=(action (mut range))
-              as |range|
-              }}
-                {{range}}
-              {{/power-select}}
-            </div>
-          </div>
-
-          {{#light-table table class="table table-hover" as |t|}}
-            {{t.head}}
-            {{#t.body as |body|}}
-              {{#body.expanded-row as |row|}}
-                {{row}}
-              {{/body.expanded-row}}
-            {{/t.body}}
-          {{/light-table}}
+{{#page-container}}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          {{#power-select
+            options=ranges
+            selected=range
+            triggerClass="range-select"
+            onchange=(action (mut range))
+          as |range|
+          }}
+            {{range}}
+          {{/power-select}}
         </div>
       </div>
+      {{basic-table table}}
     </div>
   </div>
-</div>
+{{/page-container}}

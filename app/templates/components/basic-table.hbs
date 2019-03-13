@@ -1,0 +1,8 @@
+{{#light-table table class="table table-hover" as |t|}}
+  {{t.head}}
+  {{#t.body as |body|}}
+    {{#body.expanded-row as |row|}}
+      {{row}}
+    {{/body.expanded-row}}
+  {{/t.body}}
+{{/light-table}}

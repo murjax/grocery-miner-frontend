@@ -52,5 +52,9 @@ export default Controller.extend({
 
   total: computed('model', function() {
     return this.model.meta.total_price;
+  }),
+
+  totalCount: computed('model', function() {
+    return this.model.meta.total_count;
   })
 });

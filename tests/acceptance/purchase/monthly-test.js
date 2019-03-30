@@ -83,7 +83,27 @@ module('Acceptance | purchase/monthly', hooks => {
     );
     await visit('/purchase/monthly');
     const expectedTotal = parseFloat(thisMonthPrice) * count;
-    assert.dom('h4').includesText(expectedTotal);
+    assert.dom('*').includesText(expectedTotal);
+  });
+
+  test('including total count from meta', async function(assert) {
+    const count = 47;
+    const thisMonthName = 'Apples';
+    const thisMonthPrice = '13.50';
+    const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthItem = this.server.create('item', { name: thisMonthName });
+
+    this.server.createList(
+      'purchase',
+      count,
+      {
+        item: thisMonthItem,
+        price: thisMonthPrice,
+        purchaseDate: thisMonthPurchaseDate
+      }
+    );
+    await visit('/purchase/monthly');
+    assert.dom('*').includesText(`Items Purchased: ${count}`);
   });
 
   test('monthly expenditure report with date params', async function(assert) {

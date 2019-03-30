@@ -13,6 +13,7 @@ export default ApplicationSerializer.extend({
       json.meta.total_price = model.models.reduce(
         (acc, purchase) =>
         { return acc + parseFloat(purchase.price) }, 0);
+      json.meta.total_count = model.models.length;
     }
     return json;
   }

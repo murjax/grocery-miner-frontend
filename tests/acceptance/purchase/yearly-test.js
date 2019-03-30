@@ -13,6 +13,7 @@ module('Acceptance | purchase/yearly', hooks => {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';
     const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearPurchaseDateFormatted = moment(thisYearPurchaseDate).format('MM/DD/YYYY');
     const thisYearItem = this.server.create('item', { name: thisYearName });
     this.server.create('purchase',
       { item: thisYearItem,
@@ -23,6 +24,7 @@ module('Acceptance | purchase/yearly', hooks => {
     const lastYearName = 'Oranges';
     const lastYearPrice = '14.50';
     const lastYearPurchaseDate = moment().subtract(1, 'years').format('MM-DD-YYYY');
+    const lastYearPurchaseDateFormatted = moment(lastYearPurchaseDate).format('MM/DD/YYYY');
     const lastYearItem = this.server.create('item', { name: lastYearName });
     this.server.create('purchase',
       {
@@ -35,11 +37,11 @@ module('Acceptance | purchase/yearly', hooks => {
 
     assert.dom('*').includesText(thisYearName);
     assert.dom('*').includesText(thisYearPrice);
-    assert.dom('*').includesText(thisYearPurchaseDate);
+    assert.dom('*').includesText(thisYearPurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(lastYearName);
     assert.dom('*').doesNotIncludeText(lastYearPrice);
-    assert.dom('*').doesNotIncludeText(lastYearPurchaseDate);
+    assert.dom('*').doesNotIncludeText(lastYearPurchaseDateFormatted);
   });
 
   test('yearly expenditure report pagination', async function(assert) {
@@ -89,6 +91,7 @@ module('Acceptance | purchase/yearly', hooks => {
     const thisYearName = 'Apples';
     const thisYearPrice = '13.50';
     const thisYearPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisYearPurchaseDateFormatted = moment(thisYearPurchaseDate).format('MM/DD/YYYY');
     const thisYearItem = this.server.create('item', { name: thisYearName });
     this.server.create('purchase',
       { item: thisYearItem,
@@ -99,6 +102,7 @@ module('Acceptance | purchase/yearly', hooks => {
     const otherYearName = 'Oranges';
     const otherYearPrice = '14.50';
     const otherYearPurchaseDate = '11-06-2012';
+    const otherYearPurchaseDateFormatted = '11/06/2012';
     const otherYearItem = this.server.create('item', { name: otherYearName });
     this.server.create('purchase',
       {
@@ -113,11 +117,11 @@ module('Acceptance | purchase/yearly', hooks => {
 
     assert.dom('*').doesNotIncludeText(thisYearName);
     assert.dom('*').doesNotIncludeText(thisYearPrice);
-    assert.dom('*').doesNotIncludeText(thisYearPurchaseDate);
+    assert.dom('*').doesNotIncludeText(thisYearPurchaseDateFormatted);
 
     assert.dom('*').includesText(otherYearName);
     assert.dom('*').includesText(otherYearPrice);
-    assert.dom('*').includesText(otherYearPurchaseDate);
+    assert.dom('*').includesText(otherYearPurchaseDateFormatted);
   });
 
   test('empty yearly report', async function(assert) {

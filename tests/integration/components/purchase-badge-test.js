@@ -18,7 +18,7 @@ module('Integration | Component | purchase-badge', function(hooks) {
     await render(hbs`{{purchase-badge purchase=purchase onDelete=spy}}`);
     assert.dom('*').includesText(name);
     assert.dom('*').includesText(price);
-    await click('.badge-delete');
+    await click('a');
     assert.ok(spy.calledOnce);
   });
 });

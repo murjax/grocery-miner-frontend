@@ -26,6 +26,6 @@ module('Acceptance | signup', hooks => {
   test('submitting empty form results in error', async function(assert) {
     await visit('/login');
     await click('.submit');
-    assert.dom('.errors').includesText('Email and password are required');
+    assert.dom('.auth-box').includesText('Email and password are required');
   });
 });

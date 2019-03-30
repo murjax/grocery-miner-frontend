@@ -59,9 +59,10 @@
               </div>
             {{/form.group}}
             {{#bs-button
-              type="primary"
-              class="submit"
+              type="submit"
+              class="btn-primary submit"
               block=true
+              onClick=(action "onSubmit")
             }}
               Submit
             {{/bs-button}}

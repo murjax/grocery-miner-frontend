@@ -13,6 +13,7 @@ module('Acceptance | purchase/monthly', hooks => {
     const thisMonthName = 'Apples';
     const thisMonthPrice = '13.50';
     const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthPurchaseDateFormatted = moment(thisMonthPurchaseDate).format('MM/DD/YYYY');
     const thisMonthItem = this.server.create('item', { name: thisMonthName });
     this.server.create('purchase',
       { item: thisMonthItem,
@@ -23,6 +24,7 @@ module('Acceptance | purchase/monthly', hooks => {
     const lastMonthName = 'Oranges';
     const lastMonthPrice = '14.50';
     const lastMonthPurchaseDate = moment().subtract(1, 'months').format('MM-DD-YYYY');
+    const lastMonthPurchaseDateFormatted = moment(lastMonthPurchaseDate).format('MM/DD/YYYY');
     const lastMonthItem = this.server.create('item', { name: lastMonthName });
     this.server.create('purchase',
       {
@@ -35,11 +37,11 @@ module('Acceptance | purchase/monthly', hooks => {
 
     assert.dom('*').includesText(thisMonthName);
     assert.dom('*').includesText(thisMonthPrice);
-    assert.dom('*').includesText(thisMonthPurchaseDate);
+    assert.dom('*').includesText(thisMonthPurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(lastMonthName);
     assert.dom('*').doesNotIncludeText(lastMonthPrice);
-    assert.dom('*').doesNotIncludeText(lastMonthPurchaseDate);
+    assert.dom('*').doesNotIncludeText(lastMonthPurchaseDateFormatted);
   });
 
   test('monthly expenditure report pagination', async function(assert) {
@@ -88,6 +90,7 @@ module('Acceptance | purchase/monthly', hooks => {
     const thisMonthName = 'Apples';
     const thisMonthPrice = '13.50';
     const thisMonthPurchaseDate = moment().format('MM-DD-YYYY');
+    const thisMonthPurchaseDateFormatted = moment(thisMonthPurchaseDate).format('MM-DD-YYYY');
     const thisMonthItem = this.server.create('item', { name: thisMonthName });
     this.server.create('purchase',
       { item: thisMonthItem,
@@ -98,6 +101,7 @@ module('Acceptance | purchase/monthly', hooks => {
     const otherMonthName = 'Oranges';
     const otherMonthPrice = '14.50';
     const otherMonthPurchaseDate = '11-06-2012';
+    const otherMonthPurchaseDateFormatted = '11/06/2012';
     const otherMonthItem = this.server.create('item', { name: otherMonthName });
     this.server.create('purchase',
       {
@@ -114,11 +118,11 @@ module('Acceptance | purchase/monthly', hooks => {
 
     assert.dom('*').doesNotIncludeText(thisMonthName);
     assert.dom('*').doesNotIncludeText(thisMonthPrice);
-    assert.dom('*').doesNotIncludeText(thisMonthPurchaseDate);
+    assert.dom('*').doesNotIncludeText(thisMonthPurchaseDateFormatted);
 
     assert.dom('*').includesText(otherMonthName);
     assert.dom('*').includesText(otherMonthPrice);
-    assert.dom('*').includesText(otherMonthPurchaseDate);
+    assert.dom('*').includesText(otherMonthPurchaseDateFormatted);
   });
 
   test('empty monthly report', async function(assert) {

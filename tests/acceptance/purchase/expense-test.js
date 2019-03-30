@@ -13,6 +13,7 @@ module('Acceptance | purchase/expense', hooks => {
     const expensivePurchaseName = 'Apples';
     const expensivePurchasePrice = '135.50';
     const expensivePurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const expensivePurchasePurchaseDateFormatted = moment(expensivePurchasePurchaseDate).format('MM/DD/YYYY');
     const expensiveItem = this.server.create('item', { name: expensivePurchaseName });
     this.server.create('purchase',
       { item: expensiveItem,
@@ -57,6 +58,7 @@ module('Acceptance | purchase/expense', hooks => {
     const oldExpensivePurchaseName = 'Chicken';
     const oldExpensivePurchasePrice = '235.50';
     const oldExpensivePurchasePurchaseDate = moment().subtract(2, 'months').format('MM-DD-YYYY');
+    const oldExpensivePurchasePurchaseDateFormatted = moment(oldExpensivePurchasePurchaseDate).format('MM/DD/YYYY');
     const oldExpensiveItem = this.server.create('item', { name: oldExpensivePurchaseName });
     this.server.create('purchase',
       { item: oldExpensiveItem,
@@ -68,11 +70,11 @@ module('Acceptance | purchase/expense', hooks => {
 
     assert.dom('*').includesText(expensivePurchaseName);
     assert.dom('*').includesText(expensivePurchasePrice);
-    assert.dom('*').includesText(expensivePurchasePurchaseDate);
+    assert.dom('*').includesText(expensivePurchasePurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(oldExpensivePurchaseName);
     assert.dom('*').doesNotIncludeText(oldExpensivePurchasePrice);
-    assert.dom('*').doesNotIncludeText(oldExpensivePurchasePurchaseDate);
+    assert.dom('*').doesNotIncludeText(oldExpensivePurchasePurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(cheapPurchaseName);
     assert.dom('*').doesNotIncludeText(cheapPurchasePrice);
@@ -82,6 +84,7 @@ module('Acceptance | purchase/expense', hooks => {
     const expensivePurchaseName = 'Apples';
     const expensivePurchasePrice = '135.50';
     const expensivePurchasePurchaseDate = moment().format('MM-DD-YYYY');
+    const expensivePurchasePurchaseDateFormatted = moment(expensivePurchasePurchaseDate).format('MM/DD/YYYY');
     const expensiveItem = this.server.create('item', { name: expensivePurchaseName });
     this.server.create('purchase',
       { item: expensiveItem,
@@ -126,6 +129,7 @@ module('Acceptance | purchase/expense', hooks => {
     const oldExpensivePurchaseName = 'Chicken';
     const oldExpensivePurchasePrice = '235.50';
     const oldExpensivePurchasePurchaseDate = moment().subtract(2, 'months').format('MM-DD-YYYY');
+    const oldExpensivePurchasePurchaseDateFormatted = moment(oldExpensivePurchasePurchaseDate).format('MM/DD/YYYY');
     const oldExpensiveItem = this.server.create('item', { name: oldExpensivePurchaseName });
     this.server.create('purchase',
       { item: oldExpensiveItem,
@@ -137,11 +141,11 @@ module('Acceptance | purchase/expense', hooks => {
 
     assert.dom('*').includesText(expensivePurchaseName);
     assert.dom('*').includesText(expensivePurchasePrice);
-    assert.dom('*').includesText(expensivePurchasePurchaseDate);
+    assert.dom('*').includesText(expensivePurchasePurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(oldExpensivePurchaseName);
     assert.dom('*').doesNotIncludeText(oldExpensivePurchasePrice);
-    assert.dom('*').doesNotIncludeText(oldExpensivePurchasePurchaseDate);
+    assert.dom('*').doesNotIncludeText(oldExpensivePurchasePurchaseDateFormatted);
 
     assert.dom('*').doesNotIncludeText(cheapPurchaseName);
     assert.dom('*').doesNotIncludeText(cheapPurchasePrice);
@@ -150,7 +154,7 @@ module('Acceptance | purchase/expense', hooks => {
 
     assert.dom('*').includesText(oldExpensivePurchaseName);
     assert.dom('*').includesText(oldExpensivePurchasePrice);
-    assert.dom('*').includesText(oldExpensivePurchasePurchaseDate);
+    assert.dom('*').includesText(oldExpensivePurchasePurchaseDateFormatted);
   });
 
   test('empty expense report', async function(assert) {

@@ -5,7 +5,6 @@ import { belongsTo } from 'ember-data/relationships';
 export default Model.extend({
   price: attr('number'),
   purchaseDate: attr('string'),
-  count: attr('number'),
 
   item: belongsTo()
 });

@@ -3,9 +3,11 @@ import moment from 'moment';
 import { inject } from '@ember/service';
 import { set } from '@ember/object';
 import { mapBy } from '@ember/object/computed';
+import { inject as service } from '@ember/service';
 import RSVP from 'rsvp';
 
 export default Controller.extend({
+  session: service(),
   notify: inject('notify'),
 
   items: mapBy('model.items', 'name'),

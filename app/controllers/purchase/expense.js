@@ -6,7 +6,6 @@ export default Controller.extend({
   init() {
     this._super(...arguments);
     this.ranges = ['30', '60', '90', '365'];
-    this.year = '30',
     this.columns = [
       {
         label: 'Name',
@@ -19,14 +18,16 @@ export default Controller.extend({
       },
       {
         label: 'Purchase Date',
-        valuePath: 'purchase_date',
+        valuePath: 'purchaseDate',
         cellComponent: 'date-formatter'
       },
     ];
   },
-  queryParams: ['range'],
+  queryParams: ['filterDays'],
+
+  filterDays: '30',
 
   table: computed('model', function() {
-    return new Table(this.get('columns'), this.get('model.purchases'));
+    return new Table(this.get('columns'), this.get('model'));
   }),
 });

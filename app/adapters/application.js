@@ -1,3 +1,4 @@
+import { assert } from '@ember/debug';
 import { underscore } from '@ember/string';
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
@@ -14,6 +15,7 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
     query = this._super(query)
     if (query) {
       this.sanitizeKeys(query);
+      this.sanitizeSort(query);
     }
     return query;
   },
@@ -22,6 +24,18 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
     Object.keys(query).forEach((key) => {
       this.convertKey(query, key);
     });
+    return query;
+  },
+
+  sanitizeSort(query) {
+    if (query.sort) {
+      assert('query.sort should be string', typeof query.sort === 'string');
+      let { sort } = query;
+      sort = sort.replace(/(^-|(,)-)/g, '$2{dash}');
+      sort = underscore(sort);
+      sort = sort.replace(/\{dash\}/g, '-');
+      query.sort = sort;
+    }
     return query;
   },
 

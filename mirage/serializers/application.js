@@ -39,7 +39,7 @@ export default JSONAPISerializer.extend({
     return json;
   },
 
-  paginationParams(queryParams) {
+  paginationParams({ queryParams }) {
     const pageParams = {
       number: 0, size: 0
     };

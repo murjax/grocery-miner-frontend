@@ -28,35 +28,32 @@ export default function() {
       });
     }
 
+    if (queryParams['filter[days]']) {
+      const dateLimit = moment().subtract(queryParams['filter[days]'], 'days');
+      collection = collection.filter(purchase => {
+        const date = moment(purchase.purchaseDate);
+        return date.isSameOrAfter(dateLimit);
+      });
+    }
+
+    if (queryParams.sort === '-price') {
+      collection = collection.sort((a, b) => {
+        if (a.price < b.price) {
+          return 1;
+        }
+
+        if (a.price > b.price) {
+          return -1;
+        }
+        return 0;
+      });
+    }
+
     return collection;
   });
 
 
   this.resource('item', { path: `${config.host}/items`, only: ['index', 'show', 'create'] });
-
-  this.get(`${config.host}/purchases/yearly`, function() {
-    const year = this.request.queryParams.year;
-    const startDate = moment(`01/01/${year}`);
-    const endDate = startDate.clone().endOf('year');
-    return this.schema.purchases.all().filter(purchase => {
-      const purchaseDate = moment(purchase.purchaseDate);
-      return purchaseDate.isBetween(startDate, endDate);
-    });
-  });
-
-  this.get(`${config.host}/purchases/expense`, function() {
-    const range = this.request.queryParams.range || '30';
-    const dateLimit = moment().subtract(range, 'days');
-
-    var purchases = this.schema.purchases.all().filter(purchase => {
-      const purchaseDate = moment(purchase.purchaseDate);
-      return purchaseDate.isSameOrAfter(dateLimit);
-    });
-
-    return purchases.sort(function(a, b) {
-      return b.price - a.price;
-    }).slice(0, 5);
-  });
 
   this.get(`${config.host}/purchases/frequent`, function() {
     var purchases = this.schema.purchases.all();

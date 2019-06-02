@@ -1,20 +1,21 @@
 import Route from '@ember/routing/route';
 import { inject } from '@ember/service';
-import config from '../../config/environment';
 
 export default Route.extend({
   ajax: inject('ajax'),
   queryParams: {
-    range: { refreshModel: true },
+    filterDays: { refreshModel: true },
   },
 
   model(params) {
-    return this.get('ajax').request(`${config.host}/purchases/expense`, {
-      data: params
-    }).then((response) => {
-      return response;
-    }).catch(() => {
-      return [];
-    });
+    params.include = 'item';
+    params.page = {
+      size: 5
+    }
+    params.sort = '-price';
+    return this.store.query(
+      'purchase',
+      params
+    );
   }
 });

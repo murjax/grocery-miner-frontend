@@ -5,9 +5,9 @@
         <div class="col-md-2">
           {{#power-select
             options=ranges
-            selected=range
+            selected=filterDays
             triggerClass="range-select"
-            onchange=(action (mut range))
+            onchange=(action (mut filterDays))
           as |range|
           }}
             {{range}}

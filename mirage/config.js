@@ -36,6 +36,18 @@ export default function() {
       });
     }
 
+    if (queryParams['filter[item_id]']) {
+      const itemIds = queryParams['filter[item_id]'].split(',');
+      const newCollections = itemIds.map(itemId => {
+        return collection.filter(purchase => purchase.itemId === itemId);
+      });
+      const newCollection = newCollections.shift();
+      newCollections.forEach(remainingCollection => {
+        newCollection.mergeCollection(remainingCollection);
+        });
+      collection = newCollection;
+    }
+
     if (queryParams.sort === '-price') {
       collection = collection.sort((a, b) => {
         if (a.price < b.price) {
@@ -58,10 +70,24 @@ export default function() {
   this.get(`${config.host}/items`, ({ items, purchases }, { queryParams }) => {
     let collection = items.all();
 
+    if (queryParams['filter[purchased_in_month]']) {
+      const monthDate = moment(queryParams['filter[purchased_in_month]']);
+      const startDate = monthDate.clone().startOf('month');
+      const endDate = monthDate.clone().endOf('month');
+
+      collection = collection.filter(item => {
+        const monthPurchases = purchases.where({ itemId: item.id }).filter(purchase => {
+          const date = moment(purchase.purchaseDate);
+          return date.isBetween(startDate, endDate, 'month', []);
+        });
+        return monthPurchases.length > 0;
+      });
+    }
+
     if (queryParams.sort === '-frequent_purchased') {
       collection = collection.sort((a, b) => {
-        const firstPurchaseCount = purchases.where({ item: a }).length;
-        const secondPurchaseCount = purchases.where({ item: b }).length;
+        const firstPurchaseCount = purchases.where({ itemId: a.id }).length;
+        const secondPurchaseCount = purchases.where({ itemId: b.id }).length;
 
         if (firstPurchaseCount < secondPurchaseCount) {
           return 1;
@@ -75,28 +101,5 @@ export default function() {
       });
     }
     return collection;
-  });
-
-  this.get(`${config.host}/purchases/total_per_month`, function() {
-    const month = this.request.queryParams.month;
-    const year = this.request.queryParams.year;
-    const startDate = moment(`${month}/01/${year}`);
-    const endDate = startDate.clone().endOf('month');
-
-    const purchases = this.schema.purchases.all().filter(purchase => {
-      const purchaseDate = moment(purchase.purchaseDate);
-      return purchaseDate.isBetween(startDate, endDate);
-    });
-
-    const purchasePrices = purchases.models.map(purchase => {
-      const sharedItemPurchases = purchases.models.filter(shared => {
-        return shared.item.attrs.id == purchase.item.attrs.id;
-      });
-      const total = sharedItemPurchases.reduce(function(a, b) { return a + parseFloat(b.price) }, 0);
-      return { name: purchase.item.attrs.name, price: total, count: sharedItemPurchases.length };
-    }).uniqBy('name');
-    purchasePrices;
-
-    return { purchases: purchasePrices };
   });
 }

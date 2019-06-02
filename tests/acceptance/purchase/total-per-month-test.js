@@ -18,15 +18,19 @@ module('Acceptance | purchase/total-per-month', hooks => {
 
     this.server.create('purchase', { item, price: firstPrice, purchaseDate });
     this.server.create('purchase', { item, price: secondPrice, purchaseDate });
+    const oldPurchaseDate = moment();
+    oldPurchaseDate.subtract(2, 'months');
     this.server.create('purchase', {
       item,
       price: secondPrice,
-      purchaseDate: moment().subtract(2, 'months').format('MM-DD-YYYY')
+      purchaseDate: oldPurchaseDate.format('MM-DD-YYYY')
     });
 
     await visit('purchase/total-per-month');
     assert.dom('*').includesText(name);
-    assert.dom('*').includesText(parseFloat(firstPrice) + parseFloat(secondPrice));
+    assert.dom('*').includesText(
+      (parseFloat(firstPrice) + parseFloat(secondPrice)).toString()
+    );
     assert.dom('*').includesText('2');
   });
 

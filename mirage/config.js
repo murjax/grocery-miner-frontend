@@ -18,6 +18,16 @@ export default function() {
       });
     }
 
+    if (queryParams['filter[year]']) {
+      const yearDate = moment(queryParams['filter[year]']);
+      const startDate = yearDate.clone().startOf('year');
+      const endDate = yearDate.clone().endOf('year');
+      collection = collection.filter(purchase => {
+        const date = moment(purchase.purchaseDate);
+        return date.isBetween(startDate, endDate, 'year', []);
+      });
+    }
+
     return collection;
   });
 

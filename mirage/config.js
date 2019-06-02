@@ -3,19 +3,26 @@ import moment from 'moment';
 
 export default function() {
   this.post(`${config.host}/signup`, () => true);
-  this.resource('purchase', { path: `${config.host}/purchases`, only: ['index', 'show', 'create'] });
-  this.resource('item', { path: `${config.host}/items`, only: ['index', 'show', 'create'] });
+  this.resource('purchase', { path: `${config.host}/purchases`, only: ['show', 'create'] });
 
-  this.get(`${config.host}/purchases/monthly`, function() {
-    const month = this.request.queryParams.month;
-    const year = this.request.queryParams.year;
-    const startDate = moment(`${month}/01/${year}`);
-    const endDate = startDate.clone().endOf('month');
-    return this.schema.purchases.all().filter(purchase => {
-      const purchaseDate = moment(purchase.purchaseDate);
-      return purchaseDate.isBetween(startDate, endDate);
-    });
+  this.get(`${config.host}/purchases`, ({ purchases }, { queryParams }) => {
+    let collection = purchases.all();
+
+    if (queryParams['filter[month]']) {
+      const monthDate = moment(queryParams['filter[month]']);
+      const startDate = monthDate.clone().startOf('month');
+      const endDate = monthDate.clone().endOf('month');
+      collection = collection.filter(purchase => {
+        const date = moment(purchase.purchaseDate);
+        return date.isBetween(startDate, endDate, 'month', []);
+      });
+    }
+
+    return collection;
   });
+
+
+  this.resource('item', { path: `${config.host}/items`, only: ['index', 'show', 'create'] });
 
   this.get(`${config.host}/purchases/yearly`, function() {
     const year = this.request.queryParams.year;

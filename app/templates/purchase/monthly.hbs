@@ -7,7 +7,10 @@
             options=months
             selected=month
             triggerClass="month-select"
-            onchange=(action (mut month))
+            onchange=(queue
+              (action (mut month))
+              (action "setFilterMonth")
+            )
           as |month|
           }}
             {{month}}
@@ -19,7 +22,10 @@
             options=years
             selected=year
             triggerClass="year-select"
-            onchange=(action (mut year))
+            onchange=(queue
+              (action (mut year))
+              (action "setFilterMonth")
+            )
           as |year|
           }}
             {{year}}

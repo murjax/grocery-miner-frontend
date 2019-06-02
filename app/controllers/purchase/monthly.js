@@ -1,5 +1,5 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
+import { computed, set } from '@ember/object';
 import moment from 'moment';
 import Table from 'ember-light-table';
 
@@ -19,22 +19,26 @@ export default Controller.extend({
       },
       {
         label: 'Purchase Date',
-        valuePath: 'purchase_date',
+        valuePath: 'purchaseDate',
         cellComponent: 'date-formatter'
       },
     ];
   },
-  queryParams: ['month', 'year', 'page', 'perPage'],
+  queryParams: ['filterMonth', 'page', 'perPage'],
 
   page: 1,
   perPage: 25,
+
+  filterMonth: computed('month', 'year', function() {
+    return `${this.month}/01/${this.year}`;
+  }),
 
   totalPages: computed('model', function() {
     return this.model.meta.total_pages;
   }),
 
   table: computed('model', function() {
-    return new Table(this.get('columns'), this.get('model.purchases'));
+    return new Table(this.get('columns'), this.get('model'));
   }),
 
   years: computed(function() {
@@ -62,5 +66,11 @@ export default Controller.extend({
 
   totalCount: computed('model', function() {
     return this.model.meta.total_count;
-  })
+  }),
+
+  actions: {
+    setFilterMonth() {
+      set(this, 'filterMonth', `${this.month}/01/${this.year}`);
+    }
+  }
 });

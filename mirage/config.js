@@ -55,16 +55,26 @@ export default function() {
 
   this.resource('item', { path: `${config.host}/items`, only: ['index', 'show', 'create'] });
 
-  this.get(`${config.host}/purchases/frequent`, function() {
-    var purchases = this.schema.purchases.all();
+  this.get(`${config.host}/items`, ({ items, purchases }, { queryParams }) => {
+    let collection = items.all();
 
-    const purchaseNames = purchases.models.map(purchase => {
-      return { name: purchase.item.attrs.name, count: this.schema.purchases.where({ item: purchase.item }).length };
-    }).sort(function(a, b) {
-      return b.count - a.count;
-    }).map(purchase => purchase.name).uniq().slice(0, 5);
+    if (queryParams.sort === '-frequent_purchased') {
+      collection = collection.sort((a, b) => {
+        const firstPurchaseCount = purchases.where({ item: a }).length;
+        const secondPurchaseCount = purchases.where({ item: b }).length;
 
-    return { names: purchaseNames };
+        if (firstPurchaseCount < secondPurchaseCount) {
+          return 1;
+        }
+
+        if (firstPurchaseCount > secondPurchaseCount) {
+          return -1;
+        }
+        return 0;
+
+      });
+    }
+    return collection;
   });
 
   this.get(`${config.host}/purchases/total_per_month`, function() {

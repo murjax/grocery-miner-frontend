@@ -98,4 +98,10 @@ module('Acceptance | purchase/new', hooks => {
     await click('.submit');
     assert.equal(this.server.schema.purchases.all().length, 0);
   });
+
+  test('cannot input non-numerics for price', async function(assert) {
+    await visit('/purchase/new');
+    await fillIn('#price input', 'foobar');
+    assert.dom('#price input').hasValue('');
+  });
 });

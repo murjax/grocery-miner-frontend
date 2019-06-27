@@ -64,4 +64,20 @@ module('Acceptance | purchase/total-per-month', hooks => {
     assert.dom('*').includesText('Price');
     assert.dom('*').includesText('Count');
   });
+
+  test('sorting by price descending', async function(assert) {
+    const firstPrice = '12.50';
+    const secondPrice = '12.75';
+    const purchaseDate = moment().format('MM-DD-YYYY');
+    const firstItem = this.server.create('item', { name: 'Apples' });
+    const secondItem = this.server.create('item', { name: 'Peaches' });
+
+    this.server.create('purchase', { item: firstItem, price: firstPrice, purchaseDate });
+    this.server.create('purchase', { item: secondItem, price: secondPrice, purchaseDate });
+
+    await visit('purchase/total-per-month');
+
+    assert.dom('.lt-body tr:nth-child(1)').includesText(secondPrice);
+    assert.dom('.lt-body tr:nth-child(2)').includesText(firstPrice);
+  });
 });

@@ -23,7 +23,7 @@ export default Route.extend({
     const startDate = monthDate.clone().startOf('month');
     const endDate = monthDate.clone().endOf('month');
 
-    const model = items.map((item) => {
+    var model = items.map((item) => {
       const itemPurchases = item.purchases.content.filter(purchase => {
         const date = moment(purchase.purchaseDate);
         const inRange = date.isBetween(startDate, endDate, 'month', []);
@@ -37,6 +37,18 @@ export default Route.extend({
         price,
         count: itemPurchases.length
       };
+    });
+
+    model = model.sort((a, b) => {
+      if (a.price < b.price) {
+        return 1;
+      }
+
+      if (a.price > b.price) {
+        return -1;
+      }
+
+      return 0;
     });
     return model;
   }

@@ -11,6 +11,7 @@ export default Controller.extend({
   notify: inject('notify'),
 
   items: mapBy('model.items', 'name'),
+  purchaseDate: moment().format('MM-DD-YYYY'),
 
   actions: {
     searchAsync(term) {

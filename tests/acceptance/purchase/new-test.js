@@ -104,4 +104,11 @@ module('Acceptance | purchase/new', hooks => {
     await fillIn('#price input', 'foobar');
     assert.dom('#price input').hasValue('');
   });
+
+  test('default date to today', async function(assert) {
+    const today = moment().format('MM-DD-YYYY');
+
+    await visit('/purchase/new');
+    assert.dom('#purchase-date').hasValue(today);
+  });
 });

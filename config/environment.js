@@ -55,7 +55,6 @@ module.exports = function(environment) {
     ENV['ember-simple-auth'] = {
       store: 'ember-simple-auth-session-store:local-storage'
     };
-    ENV.host = 'https://grocery-miner-api.herokuapp.com';
   }
 
   return ENV;

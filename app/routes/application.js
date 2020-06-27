@@ -4,6 +4,6 @@ import { computed } from '@ember/object';
 
 export default Route.extend(ApplicationRouteMixin, {
   routeAfterAuthentication: computed(function() {
-    return 'home';
+    return 'purchase.monthly';
   })
 });

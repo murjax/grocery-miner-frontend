@@ -64,7 +64,7 @@ export default Controller.extend({
         await RSVP.all(this.model.draftPurchases.map(purchase => {
           purchase.save();
         }));
-        this.transitionToRoute('home');
+        this.transitionToRoute('purchase.monthly');
       } catch(errors) {
         const errorTitles = errors.errors.mapBy('title');
         const errorMessage = errorTitles.join(', ');

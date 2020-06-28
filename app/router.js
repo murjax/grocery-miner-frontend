@@ -18,6 +18,7 @@ Router.map(function() {
     this.route('frequent');
     this.route('total-per-month');
   });
+  this.route('item');
 });
 
 export default Router;

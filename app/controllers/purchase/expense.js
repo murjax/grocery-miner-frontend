@@ -1,6 +1,4 @@
 import Controller from '@ember/controller';
-import { computed } from '@ember/object';
-import Table from 'ember-light-table';
 
 export default Controller.extend({
   init() {
@@ -25,9 +23,5 @@ export default Controller.extend({
   },
   queryParams: ['filterDays'],
 
-  filterDays: '30',
-
-  table: computed('model', function() {
-    return new Table(this.get('columns'), this.get('model'));
-  }),
+  filterDays: '30'
 });

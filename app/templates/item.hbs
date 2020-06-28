@@ -1,0 +1,98 @@
+{{#page-container}}
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-2">
+          {{#bs-button
+            class="btn-primary"
+            block=true
+            onClick=(action "createItem")
+          }}
+            Add Item
+          {{/bs-button}}
+        </div>
+      </div>
+      {{basic-table
+        columns=(append
+          this.columns
+          (hash
+            label="Actions"
+            cellComponent=(component
+              "table-actions"
+              onEdit=(action "editItem")
+              onDelete=(action "deleteItem")
+            )
+          )
+        )
+        records=this.model.items
+      }}
+      {{simple-pagination page=this.page pages=this.model.totalPages}}
+
+      {{#bs-modal
+        open=this.showNewModal
+        onHide=(action (mut this.showNewModal false))
+      as |modal|
+      }}
+        {{#modal.header}}
+          Add Item
+        {{/modal.header}}
+
+        {{#modal.body}}
+          {{#bs-form as |form|}}
+            <div class="row">
+              <div class="col">
+                {{form.element
+                  id="name"
+                  value=this.newItem.name
+                  placeholder="Name"
+                  onChange=(action (mut this.newItem.name))
+                }}
+              </div>
+            </div>
+            {{#bs-button
+              type="submit"
+              class="btn-primary submit"
+              block=true
+              onClick=(action "onCreate")
+            }}
+              Submit
+            {{/bs-button}}
+          {{/bs-form}}
+        {{/modal.body}}
+      {{/bs-modal}}
+
+      {{#bs-modal
+        open=this.showEditModal
+        onHide=(action (mut this.showEditModal false))
+      as |modal|
+      }}
+        {{#modal.header}}
+          Edit Item
+        {{/modal.header}}
+
+        {{#modal.body}}
+          {{#bs-form as |form|}}
+            <div class="row">
+              <div class="col">
+                {{form.element
+                  id="name"
+                  value=this.selectedItem.name
+                  placeholder="Name"
+                  onChange=(action (mut this.selectedItem.name))
+                }}
+              </div>
+            </div>
+            {{#bs-button
+              type="submit"
+              class="btn-primary submit"
+              block=true
+              onClick=(action "onUpdate")
+            }}
+              Submit
+            {{/bs-button}}
+          {{/bs-form}}
+        {{/modal.body}}
+      {{/bs-modal}}
+    </div>
+  </div>
+{{/page-container}}

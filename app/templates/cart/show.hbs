@@ -1,0 +1,49 @@
+{{#page-container}}
+  <div class="card">
+    <div class="card-body">
+      <div class="col-md-12">
+        {{#bs-form as |form|}}
+          {{#form.group}}
+            <div class="row">
+              <div class="col-md-4">
+                {{#form.group}}
+                  {{#power-select
+                    options=this.model.allItems
+                    selected=newItem
+                    triggerClass="item-select"
+                    onchange=(action (mut newItem))
+                  as |item|
+                  }}
+                    {{item.name}}
+                  {{/power-select}}
+                {{/form.group}}
+              </div>
+              <div class="col">
+                {{bs-button
+                  type="info"
+                  class="add-item"
+                  icon="fa fa-plus"
+                  onClick=(action "addItem")
+                }}
+              </div>
+            </div>
+          {{/form.group}}
+        {{/bs-form}}
+      </div>
+      {{basic-table
+        columns=(append
+          this.columns
+          (hash
+            label="Actions"
+            cellComponent=(component
+              "table-actions"
+              showEdit=false
+              onDelete=(action "deleteItem")
+            )
+          )
+        )
+        records=this.model.items
+      }}
+    </div>
+  </div>
+{{/page-container}}

@@ -19,7 +19,9 @@ Router.map(function() {
     this.route('total-per-month');
   });
   this.route('item');
-  this.route('cart');
+  this.route('cart', function() {
+    this.route('show', { path: '/:id' });
+  });
 });
 
 export default Router;

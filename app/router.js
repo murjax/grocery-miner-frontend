@@ -19,6 +19,7 @@ Router.map(function() {
     this.route('total-per-month');
   });
   this.route('item');
+  this.route('cart');
 });
 
 export default Router;

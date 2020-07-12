@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { computed, set } from '@ember/object';
 import moment from 'moment';
-import Table from 'ember-light-table';
 
 export default Controller.extend({
   init() {
@@ -35,10 +34,6 @@ export default Controller.extend({
 
   totalPages: computed('model', function() {
     return this.model.meta.total_pages;
-  }),
-
-  table: computed('model', function() {
-    return new Table(this.get('columns'), this.get('model'));
   }),
 
   years: computed(function() {

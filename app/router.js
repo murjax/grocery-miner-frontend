@@ -7,7 +7,6 @@ const Router = EmberRouter.extend({
 });
 
 Router.map(function() {
-  this.route('home');
   this.route('login');
   this.route('signup');
 
@@ -19,6 +18,7 @@ Router.map(function() {
     this.route('frequent');
     this.route('total-per-month');
   });
+  this.route('item');
 });
 
 export default Router;

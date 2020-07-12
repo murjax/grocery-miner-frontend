@@ -36,7 +36,7 @@
         <h4 class="pl-2">Items Purchased: {{totalCount}}</h4>
       </div>
 
-      {{basic-table table}}
+      {{basic-table columns=this.columns records=this.model}}
 
       <h4>Total: {{currency-formatter total}}</h4>
       <h4>Items Purchased: {{totalCount}}</h4>

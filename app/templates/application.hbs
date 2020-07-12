@@ -4,9 +4,6 @@ as |navbar|
 }}
   {{#navbar.content}}
     {{#navbar.nav as |nav|}}
-      {{#nav.item}}
-        {{#nav.link-to "home"}}Home{{/nav.link-to}}
-      {{/nav.item}}
       {{#if session.isAuthenticated}}
         {{#nav.item}}
           {{#link-to "purchase.new" class="nav-link"}}Log Purchases{{/link-to}}
@@ -31,6 +28,9 @@ as |navbar|
             {{/menu.item}}
           {{/dd.menu}}
         {{/nav.dropdown}}
+        {{#nav.item}}
+          {{#link-to "item" class="nav-link"}}Items{{/link-to}}
+        {{/nav.item}}
         {{#nav.item}}
           <a
             href="#"

@@ -1,7 +1,6 @@
 import Controller from '@ember/controller';
 import { computed, set } from '@ember/object';
 import moment from 'moment';
-import Table from 'ember-light-table';
 
 export default Controller.extend({
   init() {
@@ -27,10 +26,6 @@ export default Controller.extend({
 
   filterPurchasedInMonth: computed('month', 'year', function() {
     return `${this.month}/01/${this.year}`;
-  }),
-
-  table: computed('model', function() {
-    return new Table(this.get('columns'), this.get('model'));
   }),
 
   years: computed(function() {

@@ -1,5 +1,6 @@
 import { assert } from '@ember/debug';
 import { underscore } from '@ember/string';
+import { pluralize } from 'ember-inflector';
 import JSONAPIAdapter from 'ember-data/adapters/json-api';
 import DataAdapterMixin from 'ember-simple-auth/mixins/data-adapter-mixin';
 import config from '../config/environment';
@@ -63,5 +64,9 @@ export default JSONAPIAdapter.extend(DataAdapterMixin, {
     }
 
     return query;
+  },
+
+  pathForType(modelName) {
+    return underscore(pluralize(modelName));
   }
 });

@@ -61,7 +61,7 @@
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^5.2.0",
     "loader.js": "^4.7.0",
-    "moment": "^2.23.0",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.23",
     "qunit-dom": "^0.8.0"
   },
